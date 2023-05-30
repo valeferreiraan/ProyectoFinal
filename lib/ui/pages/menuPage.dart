@@ -6,6 +6,7 @@ import 'package:greenplastic_app/ui/pages/home.dart';
 import 'package:greenplastic_app/ui/controllers/login_controller.dart';
 import 'package:greenplastic_app/ui/pages/prueba_database.dart';
 import 'package:greenplastic_app/ui/pages/contacto.dart';
+import '../controllers/database_controller.dart';
 //import 'package:greenplastic_app/ui/pages/pruebasubirdatos.dart';
 
 import 'Cart_Catalogue/catalogo_productos.dart';
@@ -19,6 +20,19 @@ class MenuPage extends StatefulWidget {
 
 class _menuPageState extends State<MenuPage> {
   GlobalKey<ScaffoldState> _globalKey = GlobalKey<ScaffoldState>();
+  DatabaseController dbController = Get.find();
+
+  @override
+  void initState() {
+    super.initState();
+
+    if (dbController.productos.isEmpty) {
+      dbController.getProds();
+    } 
+    if (dbController.clientes.isEmpty) {
+      dbController.getClients();
+    } 
+  }
 
   @override
   Widget build(BuildContext context) {

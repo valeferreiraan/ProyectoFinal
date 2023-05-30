@@ -12,7 +12,7 @@ class PruebaDatabase extends StatefulWidget {
 }
 
 class _PruebaDatabaseState extends State<PruebaDatabase> {
-  DatabaseReference dbRef = FirebaseDatabase.instance.ref();
+  //DatabaseReference dbRef = FirebaseDatabase.instance.ref();
 
   final TextEditingController _edtNameController = TextEditingController();
   final TextEditingController _edtPriceController = TextEditingController();
@@ -28,7 +28,7 @@ class _PruebaDatabaseState extends State<PruebaDatabase> {
 
     if (databaseController.productos.isEmpty) {
       databaseController.getProds();
-    }
+    } 
   }
 
   @override

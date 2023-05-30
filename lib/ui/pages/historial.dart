@@ -5,15 +5,29 @@ import '../../constants.dart';
 import 'cotizacion.dart';
 import 'home.dart';
 import 'contacto.dart';
+import '../controllers/database_controller.dart';
+import '../database/database.dart';
 
 class HistorialPage extends StatefulWidget {
+  const HistorialPage({Key? key}) : super(key: key);
   @override
-  _HistorialPageState createState() => _HistorialPageState();
+  State<HistorialPage> createState() => _HistorialPageState();
 }
 
 class _HistorialPageState extends State<HistorialPage> {
   GlobalKey<ScaffoldState> _globalKey = GlobalKey<ScaffoldState>();
   TextEditingController _totalController = TextEditingController();
+  DatabaseController dbController = Get.find();
+
+  @override
+  void initState() {
+    super.initState();
+
+    if (dbController.clientes.isEmpty) {
+      dbController.getClients();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -230,7 +244,7 @@ class _HistorialPageState extends State<HistorialPage> {
                                   ),
                                 ),
                                 children: [
-                                  Text('Contactos'),
+                                  for (int i=0; i<dbController.clientes.length; i++) Text('${dbController.clientes[i].clientData!.nombre} ${dbController.clientes[i].clientData!.apellido}')
                                 ],
                               ),
                             ),

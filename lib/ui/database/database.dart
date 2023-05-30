@@ -174,10 +174,10 @@ class ClientData {
   late String apellido;
   late int telefono;
   late String email;
-  late BigInt nitEmpresa;
+  late int nitEmpresa;
   late String empresa;
   late String ciudad;
-  late Vendedor vendedor;
+  late String vendedor;
 
   ClientData(this.nombre, this.apellido, this.telefono, this.email, this.nitEmpresa,
       this.empresa, this.ciudad, this.vendedor);

@@ -294,9 +294,9 @@ class _ContactoState extends State<Contacto>{
                           Map<String,dynamic> data = {
                             "nombre": _nombre.text.toString(),
                             "apellido": _apellido.text.toString(),
-                            "telefono": _telefono.text,
+                            "telefono": int.parse(_telefono.text),
                             "email": _email.text.toString(),
-                            "nitEmpresa": _nitEmpresa.text,
+                            "nitEmpresa": int.parse(_nitEmpresa.text),
                             "empresa": _empresa.text,
                             "ciudad": _ciudad.text.toString(),
                             "vendedor": loginController.currentuser.value,
