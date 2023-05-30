@@ -8,7 +8,6 @@ import 'package:badges/badges.dart' as b;
 import 'package:provider/provider.dart';
 import 'package:greenplastic_app/ui/controllers/DataBase_temporal.dart';
 import 'package:greenplastic_app/ui/pages/prueba_database.dart';
-import 'package:flutter/material.dart';
 import 'package:greenplastic_app/ui/pages/home.dart';
 
 import '../cotizacion.dart';

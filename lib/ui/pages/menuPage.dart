@@ -5,6 +5,7 @@ import 'package:greenplastic_app/constants.dart';
 import 'package:greenplastic_app/ui/pages/home.dart';
 import 'package:greenplastic_app/ui/controllers/login_controller.dart';
 import 'package:greenplastic_app/ui/pages/prueba_database.dart';
+import 'package:greenplastic_app/ui/pages/contacto.dart';
 //import 'package:greenplastic_app/ui/pages/pruebasubirdatos.dart';
 
 import 'Cart_Catalogue/catalogo_productos.dart';
@@ -77,7 +78,9 @@ class _menuPageState extends State<MenuPage> {
                 width: 250,
                 height: 70,
                 child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Get.to(Contacto());
+                    },
                     child: Text(
                       'Formulario \n contacto',
                       textAlign: TextAlign.center,

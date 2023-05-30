@@ -18,7 +18,7 @@ class LoginController extends GetxController {
     'asesor3@gp.com': '3'
   };
 
-  var user = ''.obs;
+  var currentuser = ''.obs;
   var pswd = ''.obs;
 
   var logged = false.obs;
@@ -27,7 +27,7 @@ class LoginController extends GetxController {
   final passController = TextEditingController();
 
   void setEmail(String username) {
-    user.value = username;
+    currentuser.value = username;
   }
 
   void setPass(String pass) {
@@ -48,6 +48,7 @@ class LoginController extends GetxController {
               icon: Icon(Icons.people),
               backgroundColor: Colors.green,
               duration: Duration(seconds: 1));
+          print(currentuser.value);
         } else {
           Get.snackbar('Error', 'Correo o contraseña incorrectos',
               icon: Icon(Icons.warning),

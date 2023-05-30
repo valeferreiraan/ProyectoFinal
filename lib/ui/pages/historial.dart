@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import '../../constants.dart';
 import 'cotizacion.dart';
 import 'home.dart';
+import 'contacto.dart';
 
 class HistorialPage extends StatefulWidget {
   @override
@@ -69,7 +70,9 @@ class _HistorialPageState extends State<HistorialPage> {
                 width: 250,
                 height: 70,
                 child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Get.to(Contacto());
+                    },
                     child: Text(
                       'Formulario \n contacto',
                       textAlign: TextAlign.center,

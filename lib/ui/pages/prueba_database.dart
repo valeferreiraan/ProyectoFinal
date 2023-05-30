@@ -4,14 +4,14 @@ import '../controllers/database_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class PruebaDatabase1 extends StatefulWidget {
-  const PruebaDatabase1({Key? key}) : super(key: key);
+class PruebaDatabase extends StatefulWidget {
+  const PruebaDatabase({Key? key}) : super(key: key);
 
   @override
-  State<PruebaDatabase1> createState() => _PruebaDatabaseState();
+  State<PruebaDatabase> createState() => _PruebaDatabaseState();
 }
 
-class _PruebaDatabaseState extends State<PruebaDatabase1> {
+class _PruebaDatabaseState extends State<PruebaDatabase> {
   DatabaseReference dbRef = FirebaseDatabase.instance.ref();
 
   final TextEditingController _edtNameController = TextEditingController();
@@ -77,24 +77,10 @@ class _PruebaDatabaseState extends State<PruebaDatabase1> {
                   ),
                   ElevatedButton(
                       onPressed: () {
-                        Map<String, dynamic> data = {
+
+                        Map<String,dynamic> data = {
                           "nombre": _edtNameController.text.toString(),
-                          "precio":
-                              double.parse(_edtPriceController.text.toString()),
-                          "size": 10,
-                          "imagen": "imagen",
-                          "altura": 10,
-                          "tendSup": 10,
-                          "tendInf": 10,
-                          "durmientes": 10,
-                          "peso": 10,
-                          "resDinamica": 10,
-                          "resEstatica": 10,
-                          "resVacio": 10,
-                          "dimension": 10,
-                          "dilatacion": 10,
-                          "entradas": 10,
-                          "garantia": 1,
+                          "precio": double.parse(_edtPriceController.text.toString()),
                         };
 
                         if (updateProduct) {
@@ -103,7 +89,7 @@ class _PruebaDatabaseState extends State<PruebaDatabase1> {
                           });
                           Navigator.of(context).pop();
                         } else {
-                          databaseController.newProd(data);
+                          databaseController.newSeller(data);
                           Navigator.of(context).pop();
                         }
                       },

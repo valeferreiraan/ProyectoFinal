@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:greenplastic_app/constants.dart';
+import 'package:greenplastic_app/ui/controllers/login_controller.dart';
 import 'package:greenplastic_app/ui/pages/home.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:greenplastic_app/ui/controllers/database_controller.dart';
@@ -19,6 +20,7 @@ Future<void> main() async {
     storageBucket: 'greenplasticapp.appspot.com',
   ));
   Get.put(DatabaseController());
+  Get.put(LoginController());
   runApp(const MainApp());
 }
 

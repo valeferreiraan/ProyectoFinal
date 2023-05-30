@@ -84,7 +84,7 @@ class Producto {
 class ProdData {
   String? nombre;
   double? precio;
-  String? size;
+  int? size;
   String? imagen;
   double? altura;
   int? tendSup;
@@ -173,18 +173,20 @@ class ClientData {
   late String nombre;
   late String apellido;
   late int telefono;
+  late String email;
   late BigInt nitEmpresa;
   late String empresa;
   late String ciudad;
   late Vendedor vendedor;
 
-  ClientData(this.nombre, this.apellido, this.telefono, this.nitEmpresa,
+  ClientData(this.nombre, this.apellido, this.telefono, this.email, this.nitEmpresa,
       this.empresa, this.ciudad, this.vendedor);
 
   ClientData.fromJson(Map<dynamic, dynamic> json) {
     nombre = json["nombre"];
     apellido = json["apellido"];
     telefono = json["telefono"];
+    email = json["email"];
     nitEmpresa = json["nitEmpresa"];
     empresa = json["empresa"];
     ciudad = json["ciudad"];

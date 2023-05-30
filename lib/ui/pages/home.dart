@@ -7,7 +7,7 @@ import '../pages/menuPage.dart';
 
 class HomePage extends StatelessWidget {
   final _textController = TextEditingController();
-  final _LoginCon = LoginController();
+  final LoginController _loginCon = Get.find();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,7 +30,7 @@ class HomePage extends StatelessWidget {
               textInputAction: TextInputAction.next,
               cursorColor: Color3,
               style: Theme.of(context).textTheme.bodyMedium,
-              onChanged: (user) => _LoginCon.setEmail(user),
+              onChanged: (user) => _loginCon.setEmail(user),
               onSaved: (user) {
                 debugPrint(user);
               },
@@ -53,7 +53,7 @@ class HomePage extends StatelessWidget {
               textInputAction: TextInputAction.done,
               obscureText: true,
               cursorColor: Color3,
-              onChanged: (pswd) => _LoginCon.setPass(pswd),
+              onChanged: (pswd) => _loginCon.setPass(pswd),
               onSaved: (pswd) {
                 debugPrint(pswd);
               },
@@ -77,7 +77,7 @@ class HomePage extends StatelessWidget {
               height: 35,
               child: ElevatedButton(
                   onPressed: () {
-                    _LoginCon.login(_LoginCon.user.value, _LoginCon.pswd.value);
+                    _loginCon.login(_loginCon.currentuser.value, _loginCon.pswd.value);
                   },
                   child: Text(
                     'CONTINUAR',
@@ -89,6 +89,6 @@ class HomePage extends StatelessWidget {
   }
 
   void _login() {
-    _LoginCon.login(_LoginCon.user.value, _LoginCon.pswd.value);
+    _loginCon.login(_loginCon.currentuser.value, _loginCon.pswd.value);
   }
 }

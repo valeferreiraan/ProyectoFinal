@@ -6,6 +6,7 @@ import '../../constants.dart';
 import 'Cart_Catalogue/catalogo_productos.dart';
 import 'historial.dart';
 import 'home.dart';
+import 'contacto.dart';
 
 class CotizacionPage extends StatefulWidget {
   @override
@@ -73,7 +74,9 @@ class _CotizacionPageState extends State<CotizacionPage> {
                 width: 250,
                 height: 70,
                 child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Get.to(Contacto());
+                    },
                     child: Text(
                       'Formulario \n contacto',
                       textAlign: TextAlign.center,
