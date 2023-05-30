@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "529378076268",
+    "firebase_url": "https://greenplasticapp-default-rtdb.firebaseio.com",
+    "project_id": "greenplasticapp",
+    "storage_bucket": "greenplasticapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:529378076268:android:1fe89868e9237579da9a49",
+        "android_client_info": {
+          "package_name": "com.example.named_getx_navigation"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "529378076268-8ph3s165075nrhckosiaqgk3oq9ng1r8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAUKTtAMncwayflb2hkvlUVkF39CKvt5KA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "529378076268-8ph3s165075nrhckosiaqgk3oq9ng1r8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "529378076268-ao0rkciqq6k1hed2emf4efc9955g2d8i.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.namedGetxNavigation"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
