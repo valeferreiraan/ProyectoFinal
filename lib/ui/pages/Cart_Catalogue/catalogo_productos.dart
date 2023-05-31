@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:greenplastic_app/constants.dart';
 import 'package:greenplastic_app/ui/controllers/Cart_controller.dart';
 import 'package:badges/badges.dart' as b;
+import 'package:greenplastic_app/ui/pages/Cart_Catalogue/showItem.dart';
 import 'package:provider/provider.dart';
 import 'package:greenplastic_app/ui/controllers/DataBase_temporal.dart';
 import 'package:greenplastic_app/ui/pages/prueba_database.dart';
@@ -228,7 +229,8 @@ class _HomePageCartState extends State<HomePageCart> {
                         ),
                         ElevatedButton(
                           onPressed: () {
-                            saveData(index);
+                            //saveData(index);
+                            Get.to(ShowItem());
                           },
                           child: Text('Ver más',
                               style: Theme.of(context).textTheme.labelLarge),
