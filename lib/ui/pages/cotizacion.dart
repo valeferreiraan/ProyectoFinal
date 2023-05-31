@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:get/get.dart';
+
 import '../../constants.dart';
-import '../controllers/cotizacion_controler.dart';
-import '../controllers/database_controller.dart';
 import 'Cart_Catalogue/catalogo_productos.dart';
 import 'historial.dart';
 import 'home.dart';
@@ -16,9 +16,6 @@ class CotizacionPage extends StatefulWidget {
 class _CotizacionPageState extends State<CotizacionPage> {
   GlobalKey<ScaffoldState> _globalKey = GlobalKey<ScaffoldState>();
   TextEditingController _totalController = TextEditingController();
-  DatabaseController dbController = Get.find();
-  CotizacionController coController = Get.put(CotizacionController());
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -130,18 +127,13 @@ class _CotizacionPageState extends State<CotizacionPage> {
                           textAlign: TextAlign.center,
                           style: TextStyle(color: Colors.white),
                         ),
-                        Column(
-                          children: [
-                            for (int i = 0;
-                                i < coController.carrito.length;
-                                i++) ...[
-                              coController.buildCotizacionItem(
-                                dbController.productos[i].prodData!.imagen,
-                                dbController.productos[i].prodData,
-                                dbController.productos[i].prodData!.nombre,
-                              ),
-                            ],
-                          ],
+                        CotizacionItem(
+                          image: AssetImage('ruta_de_la_imagen1.jpg'),
+                          descripcion: 'Descripción del producto 1',
+                        ),
+                        CotizacionItem(
+                          image: AssetImage('ruta_de_la_imagen2.jpg'),
+                          descripcion: 'Descripción del producto 2',
                         ),
                       ],
                     ),
@@ -151,7 +143,7 @@ class _CotizacionPageState extends State<CotizacionPage> {
             ),
             SizedBox(height: 16.0),
             Text(
-              'Total: ${coController.total(coController.carrito)}',
+              'Total:',
               style: Theme.of(context).textTheme.bodyLarge,
             ),
             SizedBox(height: 8.0),
@@ -169,25 +161,14 @@ class _CotizacionPageState extends State<CotizacionPage> {
               children: [
                 ElevatedButton(
                   onPressed: () {
-                    Get.to(HomePageCart());
+                    // Acción al presionar el botón "Seguir viendo"
                   },
                   child: Text('Seguir viendo'),
                 ),
                 Spacer(),
                 ElevatedButton(
                   onPressed: () {
-                    if (coController.carrito.isNotEmpty) {
-                      coController.total(coController.carrito);
-                      Get.snackbar('Correcto', 'Cotizacion guardada',
-                          icon: Icon(Icons.warning),
-                          backgroundColor: Colors.green,
-                          duration: Duration(seconds: 1));
-                    } else {
-                      Get.snackbar('Error', 'Carrito vacio',
-                          icon: Icon(Icons.warning),
-                          backgroundColor: Colors.red,
-                          duration: Duration(seconds: 1));
-                    }
+                    // Acción al presionar el botón "Finalizar"
                   },
                   child: Text('Finalizar'),
                 ),
@@ -195,6 +176,59 @@ class _CotizacionPageState extends State<CotizacionPage> {
             )),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class CotizacionItem extends StatelessWidget {
+  final ImageProvider<Object> image;
+  final String descripcion;
+
+  const CotizacionItem({
+    required this.image,
+    required this.descripcion,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.all(16.0),
+      padding: EdgeInsets.all(16.0),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(8.0),
+        border: Border.all(
+          color: const Color.fromARGB(255, 255, 252, 252),
+          width: 2.0,
+        ),
+      ),
+      child: Row(
+        children: [
+          Container(
+            width: 80,
+            height: 80,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(8.0),
+              border: Border.all(
+                color: Color.fromARGB(255, 169, 245, 178),
+                width: 2.0,
+              ),
+              image: DecorationImage(
+                image: image,
+                fit: BoxFit.cover,
+              ),
+            ),
+          ),
+          SizedBox(width: 16.0),
+          Expanded(
+            child: Text(
+              descripcion,
+              textScaleFactor: 1,
+              textAlign: TextAlign.center,
+              style: TextStyle(color: Colors.white),
+            ),
+          ),
+        ],
       ),
     );
   }
