@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:js';
 import 'package:flex_color_scheme/flex_color_scheme.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:greenplastic_app/constants.dart';
 import 'package:greenplastic_app/ui/controllers/Cart_controller.dart';

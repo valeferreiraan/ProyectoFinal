@@ -32,6 +32,9 @@ class _menuPageState extends State<MenuPage> {
     if (dbController.clientes.isEmpty) {
       dbController.getClients();
     } 
+    if (dbController.cotizaciones.isEmpty) {
+      dbController.getCotis();
+    } 
   }
 
   @override

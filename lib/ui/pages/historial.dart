@@ -166,7 +166,7 @@ class _HistorialPageState extends State<HistorialPage> {
                                   DataTable(
                                     sortAscending: true,
                                     sortColumnIndex: 1,
-                                    dataRowHeight: 40,
+                                    dataRowHeight: 200,
                                     showBottomBorder: false,
                                     columns: [
                                       DataColumn(
@@ -174,7 +174,7 @@ class _HistorialPageState extends State<HistorialPage> {
                                             'ID',
                                           ),
                                           numeric: true),
-                                      DataColumn(label: Text('Descripción')),
+                                      DataColumn(label: Text('Cliente')),
                                       DataColumn(
                                           label: Text('Total'), numeric: true),
                                     ],
@@ -184,19 +184,87 @@ class _HistorialPageState extends State<HistorialPage> {
                                           i++)
                                         DataRow(
                                           cells: [
+                                            DataCell(Text('$i')),
                                             DataCell(
-                                              Text('$i',
-                                                  textAlign: TextAlign.right),
+                                              Card(
+                                                color: Color3,
+                                                shape: RoundedRectangleBorder(
+                                                  borderRadius: BorderRadius.circular(10),
+                                                ),
+                                                child: ExpansionTile(
+                                                  tilePadding: EdgeInsets.all(0),
+                                                  title: Container(
+                                                    padding: const EdgeInsets.symmetric(
+                                                        vertical: 10, horizontal: 15),
+                                                    child: Row(
+                                                      children: [
+                                                        Icon(Icons.history, color: Color1),
+                                                        SizedBox(width: 10),
+                                                        Expanded(
+                                                          child: Text(
+                                                            '${dbController.cotizaciones[i].cotiData!.cliente}',
+                                                            style: Theme.of(context)
+                                                                .textTheme
+                                                                .bodyMedium,
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                children:[
+                                                  DataTable(
+                                                    sortAscending: true,
+                                                    sortColumnIndex: 1,
+                                                    dataRowHeight: 70,
+                                                    showBottomBorder: false,
+                                                    columns: [
+                                                      DataColumn(
+                                                          label: Text(
+                                                            'ID',
+                                                          ),
+                                                          numeric: true),
+                                                      DataColumn(label: Text('Producto')),
+                                                      DataColumn(
+                                                          label: Text('Cantidad'), numeric: true),
+                                                      DataColumn(
+                                                          label: Text('Precio unitario'), numeric: true),
+                                                    ],
+                                                    rows: [
+                                                      for (int j = 0;
+                                                          j < dbController.cotizaciones[i].cotiData!.productos.length;
+                                                          j++)
+                                                          DataRow(
+                                                            cells: [
+                                                              DataCell(
+                                                                Text('$j',
+                                                                    textAlign: TextAlign.right),
+                                                              ),
+                                                              DataCell(
+                                                                Text(
+                                                                    '${dbController.cotizaciones[i].cotiData!.productos} ',
+                                                                    textAlign: TextAlign.right),
+                                                              ),
+                                                              DataCell(
+                                                                Text(
+                                                                    '${dbController.cotizaciones[i].cotiData!.productos[j]} ',
+                                                                    textAlign: TextAlign.right),
+                                                              ),
+                                                              DataCell(
+                                                                Text(
+                                                                    '${dbController.cotizaciones[i].cotiData!.productos[j]} ',
+                                                                    textAlign: TextAlign.right),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                    ],
+                                                  ),]
+                                                ),
+                                              ),
                                             ),
                                             DataCell(
                                               Text(
-                                                  '${dbController.cotizaciones[i].cotiData!.productos} ',
-                                                  textAlign: TextAlign.right),
-                                            ),
-                                            DataCell(
-                                              Text(
-                                                  '${dbController.cotizaciones[i].cotiData!.precioTotal} ',
-                                                  textAlign: TextAlign.right),
+                                                '${dbController.cotizaciones[i].cotiData!.precioTotal} ',
+                                                textAlign: TextAlign.right),
                                             ),
                                           ],
                                         ),

@@ -4,7 +4,6 @@ import '../controllers/database_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../database/database.dart';
 
 class PruebaDatabase extends StatefulWidget {
   const PruebaDatabase({Key? key}) : super(key: key);
@@ -96,13 +95,14 @@ class _PruebaDatabaseState extends State<PruebaDatabase> {
                       onPressed: () {
                         var vendedor = _edtvendedorController.text.toString();
                         var cliente = _edtclienteController.text.toString();
-                        var producto = {databaseController.productos[0]: 1};
+                        var producto = {databaseController.productos[0].key.toString(): 1, databaseController.productos[1].key.toString() : 2};
+                        print(producto);
 
                         var precio =
                             double.parse(_edtPriceController.text.toString());
 
                         var data = CotiData(vendedor, cliente,
-                            producto as Map<Producto, int>, precio);
+                            producto as Map<String, dynamic>, precio);
 
                         if (updateProduct) {
                           setState(() {
@@ -127,7 +127,7 @@ class _PruebaDatabaseState extends State<PruebaDatabase> {
       onTap: () {
         _edtvendedorController.text = cotizacion.cotiData!.vendedor as String;
         _edtPriceController.text = cotizacion.cotiData!.precioTotal.toString();
-        _edtproductoController.text = cotizacion.cotiData!.productos as String;
+        //_edtproductoController.text = cotizacion.cotiData!.productos as Map<String,dynamic>;
         _edtclienteController.text = cotizacion.cotiData!.cliente as String;
         updateProduct = true;
         studentDialog(key: cotizacion.key);
@@ -148,7 +148,7 @@ class _PruebaDatabaseState extends State<PruebaDatabase> {
               children: [
                 Text(cotizacion.cotiData!.vendedor as String),
                 Text(cotizacion.cotiData!.precioTotal.toString()),
-                Text(cotizacion.cotiData!.productos as String),
+                //Text(cotizacion.cotiData!.productos as String),
                 Text(cotizacion.cotiData!.cliente as String),
               ],
             ),

@@ -55,22 +55,16 @@ class Cotizacion {
 class CotiData {
   String? vendedor;
   String? cliente;
-  late Map<Producto, int> productos;
+  late Map<String, dynamic> productos;
   double precioTotal = 0;
 
-  CotiData(this.vendedor, this.cliente, this.productos, double precio);
+  CotiData(this.vendedor, this.cliente, this.productos, this.precioTotal);
 
   CotiData.fromJson(Map<dynamic, dynamic> json) {
     vendedor = json["vendedor"];
     cliente = json["cliente"];
     productos = json["productos"];
     precioTotal = json["precioTotal"];
-  }
-
-  CotiData.calcPrecioTotal() {
-    for (Producto prod in productos.keys) {
-      precioTotal += prod.prodData!.precio! * productos[prod]!;
-    }
   }
 }
 
