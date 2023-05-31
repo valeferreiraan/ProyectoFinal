@@ -13,7 +13,7 @@ firebase-debug.*.log*
 .firebase/
 #.dart_tool/
 
-build/
+#build/
 .flutter-plugins
 .flutter-plugins-dependencies
 .pubspec.lock
