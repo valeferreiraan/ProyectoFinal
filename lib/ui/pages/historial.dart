@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:get/get.dart';
 import '../../constants.dart';
 import 'cotizacion.dart';
 import 'home.dart';
 import 'contacto.dart';
 import '../controllers/database_controller.dart';
-import '../database/database.dart';
 
 class HistorialPage extends StatefulWidget {
   const HistorialPage({Key? key}) : super(key: key);
@@ -16,7 +14,6 @@ class HistorialPage extends StatefulWidget {
 
 class _HistorialPageState extends State<HistorialPage> {
   GlobalKey<ScaffoldState> _globalKey = GlobalKey<ScaffoldState>();
-  TextEditingController _totalController = TextEditingController();
   DatabaseController dbController = Get.find();
 
   @override
@@ -244,7 +241,11 @@ class _HistorialPageState extends State<HistorialPage> {
                                   ),
                                 ),
                                 children: [
-                                  for (int i=0; i<dbController.clientes.length; i++) Text('${dbController.clientes[i].clientData!.nombre} ${dbController.clientes[i].clientData!.apellido}')
+                                  for (int i = 0;
+                                      i < dbController.clientes.length;
+                                      i++)
+                                    Text(
+                                        '${dbController.clientes[i].clientData!.nombre} ${dbController.clientes[i].clientData!.apellido}')
                                 ],
                               ),
                             ),

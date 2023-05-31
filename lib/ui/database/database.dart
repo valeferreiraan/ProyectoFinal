@@ -43,8 +43,6 @@ delClient(id): eliminar un cliente
 
 */
 
-import 'dart:html';
-
 class Cotizacion {
   String? key;
   CotiData? cotiData;
@@ -179,8 +177,8 @@ class ClientData {
   late String ciudad;
   late String vendedor;
 
-  ClientData(this.nombre, this.apellido, this.telefono, this.email, this.nitEmpresa,
-      this.empresa, this.ciudad, this.vendedor);
+  ClientData(this.nombre, this.apellido, this.telefono, this.email,
+      this.nitEmpresa, this.empresa, this.ciudad, this.vendedor);
 
   ClientData.fromJson(Map<dynamic, dynamic> json) {
     nombre = json["nombre"];
