@@ -11,9 +11,9 @@ firebase-debug.*.log*
 
 # Firebase cache
 .firebase/
-#.dart_tool/
+.dart_tool/
 
-#build/
+build/
 .flutter-plugins
 .flutter-plugins-dependencies
 .pubspec.lock
