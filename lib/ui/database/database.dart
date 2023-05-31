@@ -53,12 +53,12 @@ class Cotizacion {
 }
 
 class CotiData {
-  Vendedor? vendedor;
-  Cliente? cliente;
+  String? vendedor;
+  String? cliente;
   late Map<Producto, int> productos;
   double precioTotal = 0;
 
-  CotiData(this.vendedor, this.cliente, this.productos);
+  CotiData(this.vendedor, this.cliente, this.productos, double precio);
 
   CotiData.fromJson(Map<dynamic, dynamic> json) {
     vendedor = json["vendedor"];
@@ -179,8 +179,8 @@ class ClientData {
   late String ciudad;
   late String vendedor;
 
-  ClientData(this.nombre, this.apellido, this.telefono, this.email, this.nitEmpresa,
-      this.empresa, this.ciudad, this.vendedor);
+  ClientData(this.nombre, this.apellido, this.telefono, this.email,
+      this.nitEmpresa, this.empresa, this.ciudad, this.vendedor);
 
   ClientData.fromJson(Map<dynamic, dynamic> json) {
     nombre = json["nombre"];

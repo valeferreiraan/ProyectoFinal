@@ -4,6 +4,8 @@ import '../controllers/database_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../database/database.dart';
+
 class PruebaDatabase extends StatefulWidget {
   const PruebaDatabase({Key? key}) : super(key: key);
 
@@ -14,9 +16,10 @@ class PruebaDatabase extends StatefulWidget {
 class _PruebaDatabaseState extends State<PruebaDatabase> {
   //DatabaseReference dbRef = FirebaseDatabase.instance.ref();
 
-  final TextEditingController _edtNameController = TextEditingController();
+  final TextEditingController _edtvendedorController = TextEditingController();
   final TextEditingController _edtPriceController = TextEditingController();
-  final TextEditingController _edtSubjectController = TextEditingController();
+  final TextEditingController _edtclienteController = TextEditingController();
+  final TextEditingController _edtproductoController = TextEditingController();
 
   DatabaseController databaseController = Get.find();
 
@@ -26,9 +29,9 @@ class _PruebaDatabaseState extends State<PruebaDatabase> {
   void initState() {
     super.initState();
 
-    if (databaseController.productos.isEmpty) {
-      databaseController.getProds();
-    } 
+    if (databaseController.cotizaciones.isEmpty) {
+      databaseController.getCotis();
+    }
   }
 
   @override
@@ -37,16 +40,17 @@ class _PruebaDatabaseState extends State<PruebaDatabase> {
       body: SingleChildScrollView(
         child: Obx(() => Column(
               children: [
-                for (int i = 0; i < databaseController.productos.length; i++)
-                  studentWidget(databaseController.productos[i])
+                for (int i = 0; i < databaseController.cotizaciones.length; i++)
+                  studentWidget(databaseController.cotizaciones[i])
               ],
             )),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          _edtNameController.text = "";
+          _edtvendedorController.text = "";
           _edtPriceController.text = "";
-          _edtSubjectController.text = "";
+          _edtclienteController.text = "";
+          _edtproductoController.text = "";
           updateProduct = false;
           studentDialog();
         },
@@ -66,8 +70,21 @@ class _PruebaDatabaseState extends State<PruebaDatabase> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   TextField(
-                    controller: _edtNameController,
-                    decoration: const InputDecoration(helperText: "Nombre"),
+                    controller: _edtvendedorController,
+                    decoration: const InputDecoration(helperText: "Vendedor"),
+                  ),
+                  TextField(
+                      controller: _edtclienteController,
+                      decoration: const InputDecoration(helperText: "cliente")),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  TextField(
+                      controller: _edtproductoController,
+                      decoration:
+                          const InputDecoration(helperText: "Producto")),
+                  const SizedBox(
+                    height: 10,
                   ),
                   TextField(
                       controller: _edtPriceController,
@@ -77,19 +94,23 @@ class _PruebaDatabaseState extends State<PruebaDatabase> {
                   ),
                   ElevatedButton(
                       onPressed: () {
+                        var vendedor = _edtvendedorController.text.toString();
+                        var cliente = _edtclienteController.text.toString();
+                        var producto = {databaseController.productos[0]: 1};
 
-                        Map<String,dynamic> data = {
-                          "nombre": _edtNameController.text.toString(),
-                          "precio": double.parse(_edtPriceController.text.toString()),
-                        };
+                        var precio =
+                            double.parse(_edtPriceController.text.toString());
+
+                        var data = CotiData(vendedor, cliente,
+                            producto as Map<Producto, int>, precio);
 
                         if (updateProduct) {
                           setState(() {
-                            databaseController.updProd(key, data);
+                            databaseController.updCoti(key, data);
                           });
                           Navigator.of(context).pop();
                         } else {
-                          databaseController.newSeller(data);
+                          databaseController.newCoti(data);
                           Navigator.of(context).pop();
                         }
                       },
@@ -101,13 +122,15 @@ class _PruebaDatabaseState extends State<PruebaDatabase> {
         });
   }
 
-  Widget studentWidget(Producto producto) {
+  Widget studentWidget(Cotizacion cotizacion) {
     return InkWell(
       onTap: () {
-        _edtNameController.text = producto.prodData!.nombre!;
-        _edtPriceController.text = producto.prodData!.precio!.toString();
+        _edtvendedorController.text = cotizacion.cotiData!.vendedor as String;
+        _edtPriceController.text = cotizacion.cotiData!.precioTotal.toString();
+        _edtproductoController.text = cotizacion.cotiData!.productos as String;
+        _edtclienteController.text = cotizacion.cotiData!.cliente as String;
         updateProduct = true;
-        studentDialog(key: producto.key);
+        studentDialog(key: cotizacion.key);
       },
       child: Container(
         width: MediaQuery.of(context).size.width,
@@ -123,14 +146,16 @@ class _PruebaDatabaseState extends State<PruebaDatabase> {
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(producto.prodData!.nombre!),
-                Text(producto.prodData!.precio!.toString()),
+                Text(cotizacion.cotiData!.vendedor as String),
+                Text(cotizacion.cotiData!.precioTotal.toString()),
+                Text(cotizacion.cotiData!.productos as String),
+                Text(cotizacion.cotiData!.cliente as String),
               ],
             ),
             InkWell(
                 onTap: () {
                   setState(() {
-                    databaseController.delProd(producto.key);
+                    databaseController.delCoti(cotizacion.key);
                   });
                 },
                 child: const Icon(

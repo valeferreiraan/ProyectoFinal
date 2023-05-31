@@ -55,11 +55,18 @@ class DatabaseController extends GetxController {
 
   //----------------------------COTIZACIONES----------------------------
   //Agregar una cotización nueva a la DB
-  void newCoti(data) {
+  void newCoti(CotiData data) {
+    final jsonData = {
+      "vendedor": data.vendedor,
+      "cliente": data.cliente,
+      "productos": data.productos,
+      "precioTotal": data.precioTotal,
+    };
+
     dbRef
         .child("Cotizaciones")
         .push()
-        .set(data)
+        .set(jsonData)
         .then((value) => print("Cotizacion agregada"))
         .catchError((onError) =>
             print("Error al intentar agregar la cotizacion $onError"));
@@ -72,6 +79,7 @@ class DatabaseController extends GetxController {
       Cotizacion cotizacion =
           Cotizacion(key: data.snapshot.key, cotiData: cotiData);
       cotizaciones.add(cotizacion);
+      print('entro');
     });
   }
 

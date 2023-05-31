@@ -22,6 +22,7 @@ class _HistorialPageState extends State<HistorialPage> {
   @override
   void initState() {
     super.initState();
+    dbController.getCotis();
 
     if (dbController.clientes.isEmpty) {
       dbController.getClients();
@@ -178,43 +179,27 @@ class _HistorialPageState extends State<HistorialPage> {
                                           label: Text('Total'), numeric: true),
                                     ],
                                     rows: [
-                                      DataRow(
-                                        cells: [
-                                          DataCell(Text('1',
-                                              textAlign: TextAlign.right)),
-                                          DataCell(Text('Fancy Product')),
-                                          DataCell(Text(r'$ 199.99',
-                                              textAlign: TextAlign.right)),
-                                        ],
-                                      ),
-                                      DataRow(
-                                        cells: [
-                                          DataCell(Text('2',
-                                              textAlign: TextAlign.right)),
-                                          DataCell(Text('Another Product')),
-                                          DataCell(Text(r'$ 79.00',
-                                              textAlign: TextAlign.right)),
-                                        ],
-                                      ),
-                                      DataRow(
-                                        cells: [
-                                          DataCell(Text('3',
-                                              textAlign: TextAlign.right)),
-                                          DataCell(Text('Really Cool Stuff')),
-                                          DataCell(Text(r'$ 9.99',
-                                              textAlign: TextAlign.right)),
-                                        ],
-                                      ),
-                                      DataRow(
-                                        cells: [
-                                          DataCell(Text('4',
-                                              textAlign: TextAlign.right)),
-                                          DataCell(
-                                              Text('Last Product goes here')),
-                                          DataCell(Text(r'$ 19.99',
-                                              textAlign: TextAlign.right)),
-                                        ],
-                                      ),
+                                      for (int i = 0;
+                                          i < dbController.cotizaciones.length;
+                                          i++)
+                                        DataRow(
+                                          cells: [
+                                            DataCell(
+                                              Text('$i',
+                                                  textAlign: TextAlign.right),
+                                            ),
+                                            DataCell(
+                                              Text(
+                                                  '${dbController.cotizaciones[i].cotiData!.productos} ',
+                                                  textAlign: TextAlign.right),
+                                            ),
+                                            DataCell(
+                                              Text(
+                                                  '${dbController.cotizaciones[i].cotiData!.precioTotal} ',
+                                                  textAlign: TextAlign.right),
+                                            ),
+                                          ],
+                                        ),
                                     ],
                                   ),
                                 ],
@@ -244,7 +229,11 @@ class _HistorialPageState extends State<HistorialPage> {
                                   ),
                                 ),
                                 children: [
-                                  for (int i=0; i<dbController.clientes.length; i++) Text('${dbController.clientes[i].clientData!.nombre} ${dbController.clientes[i].clientData!.apellido}')
+                                  for (int i = 0;
+                                      i < dbController.clientes.length;
+                                      i++)
+                                    Text(
+                                        '${dbController.clientes[i].clientData!.nombre} ${dbController.clientes[i].clientData!.apellido}')
                                 ],
                               ),
                             ),

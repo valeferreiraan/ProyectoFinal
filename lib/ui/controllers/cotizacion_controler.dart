@@ -4,10 +4,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:firebase_database/firebase_database.dart';
+import '../database/database.dart';
 import 'database_controller.dart';
+import '';
 
 class CotizacionController extends GetxController {
-  var carrito = <Map<String, int>>[].obs;
+  var carrito = <Map<dynamic, dynamic>>[].obs;
 
   late StreamSubscription<Event> newEntryStreamSubscription;
   late StreamSubscription<Event> updateEntryStreamSubscription;
@@ -18,18 +20,22 @@ class CotizacionController extends GetxController {
     carrito.add({idProducto!: cantidad});
   }
 
-  void coti(List<int> carrito) {
+  void coti(vendedor, cliente, productos) {
+    vendedor = 'asesor1';
+    cliente = 'nn';
     for (var i = 0; i < carrito.length; i++) {
-      var data = dbController.productos[carrito[i]].prodData;
-      dbController.newCoti(data);
+      productos = dbController.productos[carrito[i].values.first].prodData;
     }
-    carrito = [];
+    var data = CotiData(vendedor, cliente, productos, total());
+    dbController.newCoti(data);
+    carrito.clear();
   }
 
-  double total(List carrito) {
+  double total() {
     double total = 0.0;
     for (var i = 0; i < carrito.length; i++) {
-      total += dbController.productos[carrito[i]].prodData!.precio!;
+      total +=
+          dbController.productos[carrito[i].values.first].prodData!.precio!;
     }
     return total;
   }
