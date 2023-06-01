@@ -3,28 +3,25 @@ import 'dart:js_interop';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:greenplastic_app/constants.dart';
-import 'package:greenplastic_app/ui/controllers/Cart_controller.dart';
 import 'package:greenplastic_app/ui/pages/Cart_Catalogue/showItem.dart';
-import 'package:provider/provider.dart';
-import 'package:greenplastic_app/ui/controllers/DataBase_temporal.dart';
 import 'package:greenplastic_app/ui/pages/home.dart';
 import '../../controllers/database_controller.dart';
-import '../../database/database.dart';
 
 import '../cotizacion.dart';
 import '../historial.dart';
-import '../Cart_Catalogue/showItem.dart';
 
 @JS()
 external dynamic get context;
 
 class HomePageCart extends StatefulWidget {
+  const HomePageCart({super.key});
+
   @override
   _HomePageCartState createState() => _HomePageCartState();
 }
 
 class _HomePageCartState extends State<HomePageCart> {
-  GlobalKey<ScaffoldState> _globalKey = GlobalKey<ScaffoldState>();
+  final GlobalKey<ScaffoldState> _globalKey = GlobalKey<ScaffoldState>();
   DatabaseController dbController = Get.find();
 
   @override
@@ -36,7 +33,7 @@ class _HomePageCartState extends State<HomePageCart> {
         elevation: 0,
         child: Column(
           children: [
-            SizedBox(
+            const SizedBox(
               height: 50,
             ),
             SizedBox(
@@ -51,7 +48,7 @@ class _HomePageCartState extends State<HomePageCart> {
                       textAlign: TextAlign.center,
                       style: Theme.of(context).textTheme.labelLarge,
                     ))),
-            SizedBox(
+            const SizedBox(
               height: 40,
             ),
             SizedBox(
@@ -65,7 +62,7 @@ class _HomePageCartState extends State<HomePageCart> {
                       'Cotización',
                       style: Theme.of(context).textTheme.labelLarge,
                     ))),
-            SizedBox(
+            const SizedBox(
               height: 40,
             ),
             SizedBox(
@@ -79,7 +76,7 @@ class _HomePageCartState extends State<HomePageCart> {
                       'Historial',
                       style: Theme.of(context).textTheme.labelLarge,
                     ))),
-            SizedBox(
+            const SizedBox(
               height: 40,
             ),
             SizedBox(
@@ -92,7 +89,7 @@ class _HomePageCartState extends State<HomePageCart> {
                       textAlign: TextAlign.center,
                       style: Theme.of(context).textTheme.labelLarge,
                     ))),
-            SizedBox(
+            const SizedBox(
               height: 40,
             ),
             Spacer(),
@@ -103,9 +100,9 @@ class _HomePageCartState extends State<HomePageCart> {
               onPressed: () {
                 Get.to(HomePage());
               },
-              child: Icon(Icons.logout),
+              child: const Icon(Icons.logout),
             )),
-            SizedBox(
+            const SizedBox(
               height: 35,
             ),
           ],
@@ -123,10 +120,10 @@ class _HomePageCartState extends State<HomePageCart> {
                     _globalKey.currentState?.openDrawer();
                     print(dbController.productos.length);
                   },
-                  icon: Icon(Icons.menu),
+                  icon: const Icon(Icons.menu),
                   color: Color3,
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 8.0,
                 ),
                 Text('Catálogo',
@@ -139,7 +136,7 @@ class _HomePageCartState extends State<HomePageCart> {
                       onPressed: () {
                         Get.to(CotizacionPage());
                       },
-                      icon: Icon(Icons.shopping_cart),
+                      icon: const Icon(Icons.shopping_cart),
                       color: Color3,
                     ),
                   ),
