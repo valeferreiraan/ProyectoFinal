@@ -144,7 +144,9 @@ class _ShowCotiState extends State<ShowCoti> {
                           'Productos:',
                           style: TextStyle(color: Colors.white),
                         ),
-                        for (int i = 0;
+                        SingleChildScrollView(
+                          child:Column(children: [
+                            for (int i = 0;
                                 i < coController.carrito.length;
                                 i++) ...[
                               coController.buildCotizacionItem(
@@ -153,6 +155,8 @@ class _ShowCotiState extends State<ShowCoti> {
                                 dbController.productos[i].prodData!.nombre,
                               ),
                             ],
+                          ],)
+                        ),
                         Text(
                           'Precio total: ${widget.cotizacion.cotiData!.precioTotal.toString()}',
                           style: TextStyle(color: Colors.white),

@@ -320,6 +320,7 @@ class _ShowItemState extends State<ShowItem> {
                             icon: const Icon(Icons.done),
                             backgroundColor: Colors.green,
                             duration: const Duration(seconds: 1));
+                        Get.to(HomePageCart());
                       }
                     },
                     child: Text('Agregar al carrito'),

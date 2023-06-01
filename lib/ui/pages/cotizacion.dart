@@ -159,7 +159,7 @@ class _CotizacionPageState extends State<CotizacionPage> {
                   onPressed: () {
                     if (coController.carrito.isNotEmpty) {
                       coController.total();
-                      coController.coti("", "", Carrito);
+                      //coController.coti("", "", Carrito);
                       Get.snackbar(
                         'Correcto',
                         'Cotizacion guardada',
@@ -167,6 +167,8 @@ class _CotizacionPageState extends State<CotizacionPage> {
                         backgroundColor: Colors.green,
                         duration: Duration(seconds: 1),
                       );
+                      coController.carrito.value=[];
+                      Get.to(HomePageCart());
                     } else {
                       Get.snackbar(
                         'Error',
