@@ -13,8 +13,7 @@ class HistorialPage extends StatefulWidget {
 }
 
 class _HistorialPageState extends State<HistorialPage> {
-  GlobalKey<ScaffoldState> _globalKey = GlobalKey<ScaffoldState>();
-  TextEditingController _totalController = TextEditingController();
+  final GlobalKey<ScaffoldState> _globalKey = GlobalKey<ScaffoldState>();
   DatabaseController dbController = Get.find();
 
   @override
@@ -36,7 +35,7 @@ class _HistorialPageState extends State<HistorialPage> {
         elevation: 0,
         child: Column(
           children: [
-            SizedBox(
+            const SizedBox(
               height: 50,
             ),
             SizedBox(
@@ -48,7 +47,7 @@ class _HistorialPageState extends State<HistorialPage> {
                       'Catálogo',
                       style: Theme.of(context).textTheme.labelLarge,
                     ))),
-            SizedBox(
+            const SizedBox(
               height: 40,
             ),
             SizedBox(
@@ -62,7 +61,7 @@ class _HistorialPageState extends State<HistorialPage> {
                       'Cotización',
                       style: Theme.of(context).textTheme.labelLarge,
                     ))),
-            SizedBox(
+            const SizedBox(
               height: 40,
             ),
             SizedBox(
@@ -70,13 +69,13 @@ class _HistorialPageState extends State<HistorialPage> {
                 height: 35,
                 child: ElevatedButton(
                     onPressed: () {
-                      Get.to(HistorialPage());
+                      Get.to(const HistorialPage());
                     },
                     child: Text(
                       'Historial',
                       style: Theme.of(context).textTheme.labelLarge,
                     ))),
-            SizedBox(
+            const SizedBox(
               height: 40,
             ),
             SizedBox(
@@ -84,14 +83,14 @@ class _HistorialPageState extends State<HistorialPage> {
                 height: 70,
                 child: ElevatedButton(
                     onPressed: () {
-                      Get.to(Contacto());
+                      Get.to(const Contacto());
                     },
                     child: Text(
                       'Formulario \n contacto',
                       textAlign: TextAlign.center,
                       style: Theme.of(context).textTheme.labelLarge,
                     ))),
-            Spacer(),
+            const Spacer(),
             SizedBox(
                 /*width: 35,
                 height: 35,*/
@@ -99,20 +98,20 @@ class _HistorialPageState extends State<HistorialPage> {
               onPressed: () {
                 Get.to(HomePage());
               },
-              child: Icon(Icons.logout),
+              child: const Icon(Icons.logout),
             )),
-            SizedBox(
+            const SizedBox(
               height: 35,
             ),
           ],
         ),
       ),
       body: Container(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: 16.0),
+            const SizedBox(height: 16.0),
             Expanded(
               child: Stack(
                 children: [
@@ -120,7 +119,7 @@ class _HistorialPageState extends State<HistorialPage> {
                     onPressed: () {
                       _globalKey.currentState?.openDrawer();
                     },
-                    icon: Icon(Icons.menu),
+                    icon: const Icon(Icons.menu),
                     color: Color3,
                   ),
                   Center(
@@ -142,14 +141,15 @@ class _HistorialPageState extends State<HistorialPage> {
                                   borderRadius: BorderRadius.circular(10),
                                 ),
                                 child: ExpansionTile(
-                                  tilePadding: EdgeInsets.all(0),
+                                  tilePadding: const EdgeInsets.all(0),
                                   title: Container(
                                     padding: const EdgeInsets.symmetric(
                                         vertical: 10, horizontal: 15),
                                     child: Row(
                                       children: [
-                                        Icon(Icons.history, color: Color1),
-                                        SizedBox(width: 10),
+                                        const Icon(Icons.history,
+                                            color: Color1),
+                                        const SizedBox(width: 10),
                                         Expanded(
                                           child: Text(
                                             'Historial',
@@ -169,7 +169,7 @@ class _HistorialPageState extends State<HistorialPage> {
                                         sortColumnIndex: 1,
                                         dataRowHeight: 200,
                                         showBottomBorder: false,
-                                        columns: [
+                                        columns: const [
                                           DataColumn(
                                             label: Text(
                                               'ID',
@@ -236,7 +236,7 @@ class _HistorialPageState extends State<HistorialPage> {
                                                             dataRowHeight: 70,
                                                             showBottomBorder:
                                                                 false,
-                                                            columns: [
+                                                            columns: const [
                                                               DataColumn(
                                                                 label: Text(
                                                                   'ID',
@@ -321,14 +321,15 @@ class _HistorialPageState extends State<HistorialPage> {
                                   borderRadius: BorderRadius.circular(10),
                                 ),
                                 child: ExpansionTile(
-                                  tilePadding: EdgeInsets.all(0),
+                                  tilePadding: const EdgeInsets.all(0),
                                   title: Container(
                                     padding: const EdgeInsets.symmetric(
                                         vertical: 10, horizontal: 15),
                                     child: Row(
                                       children: [
-                                        Icon(Icons.contact_page, color: Color1),
-                                        SizedBox(width: 10),
+                                        const Icon(Icons.contact_page,
+                                            color: Color1),
+                                        const SizedBox(width: 10),
                                         Expanded(
                                           child: Text('Contactos',
                                               style: Theme.of(context)

@@ -1,4 +1,3 @@
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:email_validator/email_validator.dart';
@@ -37,29 +36,29 @@ class LoginController extends GetxController {
   void login(String user, String pswd) {
     if (user.isEmpty || pswd.isEmpty) {
       Get.snackbar('Error', 'Los campos no pueden estar vacíos',
-          icon: Icon(Icons.warning),
+          icon: const Icon(Icons.warning),
           backgroundColor: Colors.red,
-          duration: Duration(seconds: 1));
+          duration: const Duration(seconds: 1));
     } else {
       if (EmailValidator.validate(user)) {
         if (usuarios.containsKey(user) && usuarios[user] == pswd) {
           Get.off(MenuPage());
           Get.snackbar('Bienvenido', 'GREEN PLASTIC COLOMBIA',
-              icon: Icon(Icons.people),
+              icon: const Icon(Icons.people),
               backgroundColor: Colors.green,
-              duration: Duration(seconds: 1));
+              duration: const Duration(seconds: 1));
           print(currentuser.value);
         } else {
           Get.snackbar('Error', 'Correo o contraseña incorrectos',
-              icon: Icon(Icons.warning),
+              icon: const Icon(Icons.warning),
               backgroundColor: Colors.red,
-              duration: Duration(seconds: 1));
+              duration: const Duration(seconds: 1));
         }
       } else {
         Get.snackbar('Error', 'Correo no válido',
-            icon: Icon(Icons.warning),
+            icon: const Icon(Icons.warning),
             backgroundColor: Colors.red,
-            duration: Duration(seconds: 1));
+            duration: const Duration(seconds: 1));
       }
     }
   }

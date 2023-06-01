@@ -86,7 +86,7 @@ class ProdData {
   double? resDinamica;
   double? resEstatica;
   double? resVacio;
-  double? dimension;
+  String? dimension;
   double? dilatacion;
   int? entradas;
   int? garantia;
