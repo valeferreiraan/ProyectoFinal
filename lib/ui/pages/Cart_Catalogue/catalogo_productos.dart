@@ -17,6 +17,7 @@ class HomePageCart extends StatefulWidget {
   const HomePageCart({super.key});
 
   @override
+  // ignore: library_private_types_in_public_api
   _HomePageCartState createState() => _HomePageCartState();
 }
 
@@ -41,7 +42,7 @@ class _HomePageCartState extends State<HomePageCart> {
                 height: 35,
                 child: ElevatedButton(
                     onPressed: () {
-                      Get.to(HomePageCart());
+                      Get.to(const HomePageCart());
                     },
                     child: Text(
                       'Catálogo',
@@ -70,7 +71,7 @@ class _HomePageCartState extends State<HomePageCart> {
                 height: 35,
                 child: ElevatedButton(
                     onPressed: () {
-                      Get.to(HistorialPage());
+                      Get.to(const HistorialPage());
                     },
                     child: Text(
                       'Historial',
@@ -92,7 +93,7 @@ class _HomePageCartState extends State<HomePageCart> {
             const SizedBox(
               height: 40,
             ),
-            Spacer(),
+            const Spacer(),
             SizedBox(
                 /*width: 35,
                 height: 35,*/
@@ -118,7 +119,6 @@ class _HomePageCartState extends State<HomePageCart> {
                 IconButton(
                   onPressed: () {
                     _globalKey.currentState?.openDrawer();
-                    print(dbController.productos.length);
                   },
                   icon: const Icon(Icons.menu),
                   color: Color3,
@@ -226,8 +226,6 @@ class _HomePageCartState extends State<HomePageCart> {
                               producto: dbController.productos[index],
                               index: index,
                             ));
-                            print(
-                                dbController.productos[index].prodData!.nombre);
                           },
                           child: Text('Ver más',
                               style: Theme.of(context).textTheme.labelLarge),
