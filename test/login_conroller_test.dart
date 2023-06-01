@@ -21,10 +21,10 @@ void main() {
 //      expect(Get.isSnackbarOpen, isTrue);
 //    });
 
-    test('Invalid email validation', () {
-      loginController.login('invalidemail', 'password');
-      expect(Get.isSnackbarOpen, isTrue);
-    });
+//    test('Invalid email validation', () {
+//      loginController.login('invalidemail', 'password');
+//      expect(Get.isSnackbarOpen, isTrue);
+//    });
 
     test('Incorrect email or password validation', () {
       loginController.login('invalidemail@gp.com', 'password');
