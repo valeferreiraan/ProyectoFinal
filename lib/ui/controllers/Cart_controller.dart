@@ -1,6 +1,26 @@
 import 'package:flutter/cupertino.dart';
+import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'DataBase_temporal.dart';
+
+class addItemController extends GetxController {
+  var counter = 0.obs;
+  void addCantidad() {
+    counter.value++;
+  }
+
+  void removeCantidad() {
+    if (counter.value >= 1) {
+      counter.value--;
+    } else {
+      counter.value = counter.value;
+    }
+  }
+
+  void resetCantidad() {
+    counter = 0.obs;
+  }
+}
 
 class Cart {
   late final int? id;
@@ -98,14 +118,14 @@ class CartProvider with ChangeNotifier {
 
   void addCounter() {
     _counter++;
-    _setPrefsItems();
-    notifyListeners();
+    //_setPrefsItems();
+    //notifyListeners();
   }
 
   void removeCounter() {
     _counter--;
-    _setPrefsItems();
-    notifyListeners();
+    //_setPrefsItems();
+    //notifyListeners();
   }
 
   int getCounter() {

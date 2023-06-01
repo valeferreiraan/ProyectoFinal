@@ -10,9 +10,12 @@ import 'package:provider/provider.dart';
 import 'package:greenplastic_app/ui/controllers/DataBase_temporal.dart';
 import 'package:greenplastic_app/ui/pages/prueba_database.dart';
 import 'package:greenplastic_app/ui/pages/home.dart';
+import '../../controllers/database_controller.dart';
+import '../../database/database.dart';
 
 import '../cotizacion.dart';
 import '../historial.dart';
+import '../Cart_Catalogue/showItem.dart';
 
 class HomePageCart extends StatefulWidget {
   @override
@@ -21,6 +24,7 @@ class HomePageCart extends StatefulWidget {
 
 class _HomePageCartState extends State<HomePageCart> {
   GlobalKey<ScaffoldState> _globalKey = GlobalKey<ScaffoldState>();
+  DatabaseController dbController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -90,18 +94,6 @@ class _HomePageCartState extends State<HomePageCart> {
             SizedBox(
               height: 40,
             ),
-            SizedBox(
-                width: 250,
-                height: 35,
-                child: ElevatedButton(
-                    onPressed: () {
-                      //Get.to(PruebaDatabase());
-                    },
-                    child: Text(
-                      'Test product',
-                      textAlign: TextAlign.center,
-                      style: Theme.of(context).textTheme.labelLarge,
-                    ))),
             Spacer(),
             SizedBox(
                 /*width: 35,
@@ -128,6 +120,7 @@ class _HomePageCartState extends State<HomePageCart> {
                 IconButton(
                   onPressed: () {
                     _globalKey.currentState?.openDrawer();
+                    print(dbController.productos.length);
                   },
                   icon: Icon(Icons.menu),
                   color: Color3,
@@ -158,7 +151,7 @@ class _HomePageCartState extends State<HomePageCart> {
               padding:
                   const EdgeInsets.symmetric(vertical: 10.0, horizontal: 8.0),
               shrinkWrap: true,
-              itemCount: products.length,
+              itemCount: dbController.productos.length,
               itemBuilder: (context, index) {
                 return Card(
                   color: Color3,
@@ -181,12 +174,12 @@ class _HomePageCartState extends State<HomePageCart> {
                                 overflow: TextOverflow.ellipsis,
                                 maxLines: 1,
                                 text: TextSpan(
-                                  text: 'Name: ',
+                                  text: 'Nombre: ',
                                   style: Theme.of(context).textTheme.bodySmall,
                                   children: [
                                     TextSpan(
                                       text:
-                                          '${products[index].name.toString()}\n',
+                                          '${dbController.productos[index].prodData!.nombre.toString()}\n',
                                       style: const TextStyle(
                                         fontWeight: FontWeight.bold,
                                       ),
@@ -197,12 +190,13 @@ class _HomePageCartState extends State<HomePageCart> {
                               RichText(
                                 maxLines: 1,
                                 text: TextSpan(
-                                  text: 'Unit: ',
+                                  text: 'Tamaño: ',
                                   style: Theme.of(context).textTheme.bodySmall,
                                   children: [
                                     TextSpan(
                                       text:
-                                          '${products[index].unit.toString()}\n',
+                                          '${dbController.productos[index].prodData!.dimension}\n',
+                                      //'${dbController.productos[index].prodData?.size.toString()}\n',
                                       style:
                                           Theme.of(context).textTheme.bodySmall,
                                     ),
@@ -212,12 +206,12 @@ class _HomePageCartState extends State<HomePageCart> {
                               RichText(
                                 maxLines: 1,
                                 text: TextSpan(
-                                  text: 'Price: ' r"$",
+                                  text: 'Precio: ' r"$",
                                   style: Theme.of(context).textTheme.bodySmall,
                                   children: [
                                     TextSpan(
                                       text:
-                                          '${products[index].price.toString()}\n',
+                                          '${dbController.productos[index].prodData!.precio.toString()}\n',
                                       style:
                                           Theme.of(context).textTheme.bodySmall,
                                     ),
@@ -230,7 +224,12 @@ class _HomePageCartState extends State<HomePageCart> {
                         ElevatedButton(
                           onPressed: () {
                             //saveData(index);
-                            Get.to(ShowItem());
+                            Get.to(ShowItem(
+                              producto: dbController.productos[index],
+                              index: index,
+                            ));
+                            print(
+                                dbController.productos[index].prodData!.nombre);
                           },
                           child: Text('Ver más',
                               style: Theme.of(context).textTheme.labelLarge),
@@ -247,7 +246,7 @@ class _HomePageCartState extends State<HomePageCart> {
     );
   }
 }
-
+/*
 final cart = Provider.of<CartProvider>(context as BuildContext);
 
 void saveData(int index) {
@@ -272,3 +271,4 @@ void saveData(int index) {
     print(error.toString());
   });
 }
+*/

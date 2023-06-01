@@ -10,19 +10,30 @@ import 'package:provider/provider.dart';
 import 'package:greenplastic_app/ui/controllers/DataBase_temporal.dart';
 import 'package:greenplastic_app/ui/pages/prueba_database.dart';
 import 'package:greenplastic_app/ui/pages/home.dart';
+import '../../controllers/database_controller.dart';
+import '../../database/database.dart';
+import '../../controllers/Cart_controller.dart';
+import '../../controllers/cotizacion_controler.dart';
 
 import '../cotizacion.dart';
 import '../historial.dart';
 import 'catalogo_productos.dart';
 
 class ShowItem extends StatefulWidget {
+  final Producto producto;
+  final int index;
+
+  ShowItem({required this.producto, required this.index});
+
   @override
   _ShowItemState createState() => _ShowItemState();
 }
 
 class _ShowItemState extends State<ShowItem> {
   GlobalKey<ScaffoldState> _globalKey = GlobalKey<ScaffoldState>();
-  final TextEditingController _cantidad = TextEditingController();
+  DatabaseController dbController = Get.find();
+  CotizacionController coController = Get.put(CotizacionController());
+  final cartController = Get.put(addItemController());
 
   @override
   Widget build(BuildContext context) {
@@ -92,18 +103,6 @@ class _ShowItemState extends State<ShowItem> {
               SizedBox(
                 height: 40,
               ),
-              SizedBox(
-                  width: 250,
-                  height: 35,
-                  child: ElevatedButton(
-                      onPressed: () {
-                        //Get.to(PruebaDatabase());
-                      },
-                      child: Text(
-                        'Test product',
-                        textAlign: TextAlign.center,
-                        style: Theme.of(context).textTheme.labelLarge,
-                      ))),
               Spacer(),
               SizedBox(
                   /*width: 35,
@@ -130,6 +129,7 @@ class _ShowItemState extends State<ShowItem> {
                   IconButton(
                     onPressed: () {
                       _globalKey.currentState?.openDrawer();
+                      print(widget.producto);
                     },
                     icon: Icon(Icons.menu),
                     color: Color3,
@@ -167,7 +167,8 @@ class _ShowItemState extends State<ShowItem> {
                     height: 250,
                     decoration: BoxDecoration(
                       image: DecorationImage(
-                        image: AssetImage('/forest.jpg'), // Ruta de la imagen
+                        image: AssetImage(
+                            '${widget.producto.prodData!.imagen.toString()}'), // Ruta de la imagen
                         fit: BoxFit.cover,
                       ),
                     ),
@@ -183,31 +184,31 @@ class _ShowItemState extends State<ShowItem> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Nombre: ',
+                          'Nombre: ${widget.producto.prodData!.nombre.toString()}',
                           style: TextStyle(color: Colors.white),
                         ),
                         Text(
-                          'Altura: ',
+                          'Altura: ${widget.producto.prodData!.altura.toString()}',
                           style: TextStyle(color: Colors.white),
                         ),
                         Text(
-                          'Peso: ',
+                          'Peso: ${widget.producto.prodData!.peso.toString()}',
                           style: TextStyle(color: Colors.white),
                         ),
                         Text(
-                          'Dimensión: ',
+                          'Dimensión: ${widget.producto.prodData!.dimension.toString()}',
                           style: TextStyle(color: Colors.white),
                         ),
                         Text(
-                          'Dilatación: ',
+                          'Dilatación: ${widget.producto.prodData!.dilatacion.toString()}',
                           style: TextStyle(color: Colors.white),
                         ),
                         Text(
-                          'Entradas: ',
+                          'Entradas: ${widget.producto.prodData!.entradas.toString()}',
                           style: TextStyle(color: Colors.white),
                         ),
                         Text(
-                          'Garantías: ',
+                          'Garantías: ${widget.producto.prodData!.garantia.toString()}',
                           style: TextStyle(color: Colors.white),
                         ),
                       ],
@@ -223,47 +224,70 @@ class _ShowItemState extends State<ShowItem> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Tendido superior: ',
+                    'Tendido superior: ${widget.producto.prodData!.tendSup.toString()}',
                     style: TextStyle(color: Colors.white),
                   ),
                   Text(
-                    'Tendido inferior: ',
+                    'Tendido inferior: ${widget.producto.prodData!.tendSup.toString()}',
                     style: TextStyle(color: Colors.white),
                   ),
                   Text(
-                    'Durmientes plásticos: ',
+                    'Durmientes plásticos: ${widget.producto.prodData!.durmientes.toString()}',
                     style: TextStyle(color: Colors.white),
                   ),
                   Text(
-                    'Resistencia dinámica: ',
+                    'Resistencia dinámica: ${widget.producto.prodData!.resDinamica.toString()}',
                     style: TextStyle(color: Colors.white),
                   ),
                   Text(
-                    'Resistencia estática: ',
+                    'Resistencia estática: ${widget.producto.prodData!.resEstatica.toString()}',
                     style: TextStyle(color: Colors.white),
                   ),
                   Text(
-                    'Resistencia al vacío: ',
+                    'Resistencia al vacío: ${widget.producto.prodData!.resVacio.toString()}',
                     style: TextStyle(color: Colors.white),
                   ),
                   Spacer(),
                   Center(
-                    child: SizedBox(
-                        width: 250,
-                        height: 45,
-                        child: TextField(
-                            controller: _cantidad,
-                            style: Theme.of(context).textTheme.bodyMedium,
-                            decoration: InputDecoration(
-                              hintStyle: Theme.of(context).textTheme.bodyMedium,
-                              filled: true,
-                              fillColor: Color3,
-                              hintText: "CANTIDAD",
-                              prefixIcon: const Padding(
-                                padding: EdgeInsets.all(2.0),
-                                child: Icon(Icons.add_shopping_cart),
+                    child: Container(
+                      decoration: BoxDecoration(
+                          color: Color3,
+                          borderRadius: BorderRadius.circular(10)),
+                      child: SizedBox(
+                          width: 300,
+                          height: 45,
+                          child: Center(
+                              child: Row(
+                            children: [
+                              Spacer(),
+                              ElevatedButton(
+                                onPressed: () {
+                                  cartController.removeCantidad();
+                                },
+                                child: Text('-'),
                               ),
-                            ))),
+                              Spacer(),
+                              Text('Cantidad: ',
+                                  textAlign: TextAlign.center,
+                                  style:
+                                      Theme.of(context).textTheme.bodyMedium),
+                              Obx(
+                                () => Text('${cartController.counter.value}',
+                                    textAlign: TextAlign.center,
+                                    style:
+                                        Theme.of(context).textTheme.bodyMedium),
+                              ),
+                              Spacer(),
+                              ElevatedButton(
+                                onPressed: () {
+                                  cartController.addCantidad();
+                                },
+                                child: Text('+'),
+                              ),
+                              Spacer()
+                            ],
+                          ))),
+                    ),
                   ),
                   Spacer(),
                 ],
@@ -283,10 +307,22 @@ class _ShowItemState extends State<ShowItem> {
                   Spacer(),
                   ElevatedButton(
                     onPressed: () {
-                      Get.snackbar('¡Listo!', 'Producto añadido correctamente',
-                          icon: const Icon(Icons.done),
-                          backgroundColor: Colors.green,
-                          duration: const Duration(seconds: 1));
+                      print(widget.index);
+                      if (cartController.counter.value == 0) {
+                        Get.snackbar(
+                            '¡Ya casi!', 'Añade la cantidad del producto',
+                            icon: const Icon(Icons.warning),
+                            backgroundColor: Colors.orange,
+                            duration: const Duration(seconds: 1));
+                      } else {
+                        coController.car(
+                            widget.index, cartController.counter.value);
+                        Get.snackbar(
+                            '¡Listo!', 'Producto añadido correctamente',
+                            icon: const Icon(Icons.done),
+                            backgroundColor: Colors.green,
+                            duration: const Duration(seconds: 1));
+                      }
                     },
                     child: Text('Agregar al carrito'),
                   ),
