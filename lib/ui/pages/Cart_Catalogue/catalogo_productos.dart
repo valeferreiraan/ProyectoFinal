@@ -1,5 +1,3 @@
-import 'dart:js_interop';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:greenplastic_app/constants.dart';
@@ -9,9 +7,6 @@ import '../../controllers/database_controller.dart';
 
 import '../cotizacion.dart';
 import '../historial.dart';
-
-@JS()
-external dynamic get context;
 
 class HomePageCart extends StatefulWidget {
   const HomePageCart({super.key});
