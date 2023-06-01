@@ -103,18 +103,6 @@ class _menuPageState extends State<MenuPage> {
             SizedBox(
               height: 40,
             ),
-            SizedBox(
-                width: 250,
-                height: 35,
-                child: ElevatedButton(
-                    onPressed: () {
-                      //Get.to(PruebaDatabase());
-                    },
-                    child: Text(
-                      'Test product',
-                      textAlign: TextAlign.center,
-                      style: Theme.of(context).textTheme.labelLarge,
-                    ))),
             Spacer(),
             SizedBox(
                 /*width: 35,

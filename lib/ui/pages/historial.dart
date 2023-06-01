@@ -6,6 +6,9 @@ import 'cotizacion.dart';
 import 'home.dart';
 import 'contacto.dart';
 import '../controllers/database_controller.dart';
+import 'Cart_Catalogue/catalogo_productos.dart';
+import 'resumen_coti.dart';
+import '../controllers/cotizacion_controler.dart';
 
 class HistorialPage extends StatefulWidget {
   const HistorialPage({Key? key}) : super(key: key);
@@ -16,11 +19,14 @@ class HistorialPage extends StatefulWidget {
 class _HistorialPageState extends State<HistorialPage> {
   final GlobalKey<ScaffoldState> _globalKey = GlobalKey<ScaffoldState>();
   DatabaseController dbController = Get.find();
+  CotizacionController coController = Get.find();
 
   @override
   void initState() {
     super.initState();
-    dbController.getCotis();
+    if (dbController.cotizaciones.isEmpty){
+      dbController.getCotis();
+    }
 
     if (dbController.clientes.isEmpty) {
       dbController.getClients();
@@ -170,7 +176,7 @@ class _HistorialPageState extends State<HistorialPage> {
                                       child: DataTable(
                                         sortAscending: true,
                                         sortColumnIndex: 1,
-                                        dataRowHeight: 200,
+                                        dataRowHeight: 40,
                                         showBottomBorder: false,
                                         columns: const [
                                           DataColumn(
@@ -195,7 +201,8 @@ class _HistorialPageState extends State<HistorialPage> {
                                               cells: [
                                                 DataCell(Text('$i')),
                                                 DataCell(
-                                                  Card(
+                                                  InkWell(
+                                                    child: Card(
                                                     color: Color3,
                                                     shape:
                                                         RoundedRectangleBorder(
@@ -203,110 +210,22 @@ class _HistorialPageState extends State<HistorialPage> {
                                                           BorderRadius.circular(
                                                               10),
                                                     ),
-                                                    child: ExpansionTile(
-                                                      tilePadding:
-                                                          const EdgeInsets.all(
-                                                              0),
-                                                      title: Container(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                    .symmetric(
-                                                                vertical: 10,
-                                                                horizontal: 15),
-                                                        child: Row(
-                                                          children: [
-                                                            const Icon(
-                                                                Icons.history,
-                                                                color: Color1),
-                                                            const SizedBox(
-                                                                width: 10),
-                                                            Expanded(
-                                                              child: Text(
-                                                                '${dbController.cotizaciones[i].cotiData!.cliente}',
-                                                                style: Theme.of(
-                                                                        context)
-                                                                    .textTheme
-                                                                    .bodyMedium,
-                                                              ),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                      ),
-                                                      children: [
-                                                        SingleChildScrollView(
-                                                          scrollDirection:
-                                                              Axis.horizontal,
-                                                          child: DataTable(
-                                                            sortAscending: true,
-                                                            sortColumnIndex: 1,
-                                                            dataRowHeight: 70,
-                                                            showBottomBorder:
-                                                                false,
-                                                            columns: const [
-                                                              DataColumn(
-                                                                label: Text(
-                                                                  'ID',
-                                                                ),
-                                                                numeric: true,
-                                                              ),
-                                                              DataColumn(
-                                                                  label: Text(
-                                                                      'Producto')),
-                                                              DataColumn(
-                                                                label: Text(
-                                                                    'Cantidad'),
-                                                                numeric: true,
-                                                              ),
-                                                              DataColumn(
-                                                                label: Text(
-                                                                    'Precio unitario'),
-                                                                numeric: true,
-                                                              ),
-                                                            ],
-                                                            rows: [
-                                                              for (int j = 0;
-                                                                  j <
-                                                                      dbController
-                                                                          .cotizaciones[
-                                                                              i]
-                                                                          .cotiData!
-                                                                          .productos
-                                                                          .length;
-                                                                  j++)
-                                                                DataRow(
-                                                                  cells: [
-                                                                    DataCell(
-                                                                      Text('$j',
-                                                                          textAlign:
-                                                                              TextAlign.right),
-                                                                    ),
-                                                                    DataCell(
-                                                                      Text(
-                                                                          '${dbController.cotizaciones[i].cotiData!.productos} ',
-                                                                          textAlign:
-                                                                              TextAlign.right),
-                                                                    ),
-                                                                    DataCell(
-                                                                      Text(
-                                                                          '${dbController.cotizaciones[i].cotiData!.productos[j]} ',
-                                                                          textAlign:
-                                                                              TextAlign.right),
-                                                                    ),
-                                                                    DataCell(
-                                                                      Text(
-                                                                          '${dbController.cotizaciones[i].cotiData!.productos[j]} ',
-                                                                          textAlign:
-                                                                              TextAlign.right),
-                                                                    ),
-                                                                  ],
-                                                                ),
-                                                            ],
-                                                          ),
-                                                        ),
-                                                      ],
+                                                    child: Text('${dbController.cotizaciones[i].cotiData!.cliente}'),),
+                                                    onTap: (){
+                                                        for (var k in dbController.cotizaciones[i].cotiData!.productos.keys){
+                                                          String prodKey='';
+                                                          int index=-1;
+                                                          for (int j=0; j<dbController.productos.length; j++){
+                                                            if (k.toString()==dbController.productos[j].key.toString()){prodKey=k;index=j;}
+                                                            }
+                                                          if (prodKey!='' && index!=-1){
+                                                            coController.car(index, dbController.cotizaciones[i].cotiData!.productos[prodKey]);
+                                                          }
+                                                      }
+                                                      Get.to(ShowCoti(cotizacion: dbController.cotizaciones[i],));
+                                                    }
                                                     ),
                                                   ),
-                                                ),
                                                 DataCell(
                                                   Text(
                                                       '${dbController.cotizaciones[i].cotiData!.precioTotal} ',

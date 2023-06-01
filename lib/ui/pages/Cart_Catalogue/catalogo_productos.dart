@@ -7,6 +7,7 @@ import '../../controllers/database_controller.dart';
 
 import '../cotizacion.dart';
 import '../historial.dart';
+import '../contacto.dart';
 
 class HomePageCart extends StatefulWidget {
   const HomePageCart({super.key});
@@ -79,7 +80,9 @@ class _HomePageCartState extends State<HomePageCart> {
                 width: 250,
                 height: 70,
                 child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Get.to(Contacto());
+                    },
                     child: Text(
                       'Formulario \n contacto',
                       textAlign: TextAlign.center,

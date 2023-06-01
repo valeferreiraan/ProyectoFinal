@@ -10,6 +10,7 @@ import '../../controllers/cotizacion_controler.dart';
 import '../cotizacion.dart';
 import '../historial.dart';
 import 'catalogo_productos.dart';
+import '../contacto.dart';
 
 class ShowItem extends StatefulWidget {
   final Producto producto;
@@ -24,7 +25,7 @@ class ShowItem extends StatefulWidget {
 class _ShowItemState extends State<ShowItem> {
   GlobalKey<ScaffoldState> _globalKey = GlobalKey<ScaffoldState>();
   DatabaseController dbController = Get.find();
-  CotizacionController coController = Get.put(CotizacionController());
+  CotizacionController coController = Get.find();
   final cartController = Get.put(addItemController());
 
   @override
@@ -86,7 +87,9 @@ class _ShowItemState extends State<ShowItem> {
                   width: 250,
                   height: 70,
                   child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Get.to(Contacto());
+                      },
                       child: Text(
                         'Formulario \n contacto',
                         textAlign: TextAlign.center,

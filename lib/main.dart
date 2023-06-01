@@ -6,6 +6,7 @@ import 'package:greenplastic_app/ui/controllers/login_controller.dart';
 import 'package:greenplastic_app/ui/pages/home.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:greenplastic_app/ui/controllers/database_controller.dart';
+import 'package:greenplastic_app/ui/controllers/cotizacion_controler.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -20,6 +21,7 @@ Future<void> main() async {
   ));
   Get.put(DatabaseController());
   Get.put(LoginController());
+  Get.put(CotizacionController());
   runApp(const MainApp());
 }
 

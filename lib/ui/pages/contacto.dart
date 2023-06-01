@@ -97,7 +97,9 @@ class _ContactoState extends State<Contacto> {
                 width: 250,
                 height: 70,
                 child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Get.to(Contacto());
+                    },
                     child: Text(
                       'Formulario \n contacto',
                       textAlign: TextAlign.center,
@@ -106,18 +108,6 @@ class _ContactoState extends State<Contacto> {
             const SizedBox(
               height: 40,
             ),
-            SizedBox(
-                width: 250,
-                height: 35,
-                child: ElevatedButton(
-                    onPressed: () {
-                      Get.to(const PruebaDatabase());
-                    },
-                    child: Text(
-                      'Test product',
-                      textAlign: TextAlign.center,
-                      style: Theme.of(context).textTheme.labelLarge,
-                    ))),
             const Spacer(),
             SizedBox(
                 /*width: 35,

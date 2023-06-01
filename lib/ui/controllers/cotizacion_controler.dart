@@ -16,7 +16,7 @@ class CotizacionController extends GetxController {
 
   void car(int indice, int cantidad) {
     var idProducto = dbController.productos[indice].key;
-    carrito.add({idProducto!: cantidad});
+    carrito.add({indice: cantidad});
   }
 
   void coti(vendedor, cliente, productos) {
