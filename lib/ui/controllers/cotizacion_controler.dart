@@ -3,6 +3,7 @@ import 'dart:html';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../database/database.dart';
+import 'Cart_controller.dart';
 import 'database_controller.dart';
 
 class CotizacionController extends GetxController {
@@ -11,6 +12,7 @@ class CotizacionController extends GetxController {
   late StreamSubscription<Event> newEntryStreamSubscription;
   late StreamSubscription<Event> updateEntryStreamSubscription;
   DatabaseController dbController = Get.find();
+  final cartController = Get.put(addItemController());
 
   void car(int indice, int cantidad) {
     var idProducto = dbController.productos[indice].key;
@@ -21,7 +23,8 @@ class CotizacionController extends GetxController {
     vendedor = 'asesor1';
     cliente = 'nn';
     for (var i = 0; i < carrito.length; i++) {
-      productos = dbController.productos[carrito[i].values.first].prodData;
+      var llave = carrito[i].values.first;
+      productos = {dbController.productos[llave].key: carrito[llave]};
     }
     var data = CotiData(vendedor, cliente, productos, total());
     dbController.newCoti(data);
@@ -32,7 +35,7 @@ class CotizacionController extends GetxController {
     double total = 0.0;
     for (var i = 0; i < carrito.length; i++) {
       total +=
-          dbController.productos[carrito[i].values.first].prodData!.precio!;
+          (dbController.productos[carrito[i].values.first].prodData!.precio!);
     }
     return total;
   }

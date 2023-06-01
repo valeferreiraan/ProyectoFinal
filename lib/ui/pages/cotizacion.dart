@@ -28,76 +28,73 @@ class _CotizacionPageState extends State<CotizacionPage> {
         elevation: 0,
         child: Column(
           children: [
+            SizedBox(height: 50),
             SizedBox(
-              height: 50,
+              width: 250,
+              height: 35,
+              child: ElevatedButton(
+                onPressed: () {
+                  Get.to(HomePageCart());
+                },
+                child: Text(
+                  'Catálogo',
+                  style: Theme.of(context).textTheme.labelLarge,
+                ),
+              ),
             ),
+            SizedBox(height: 40),
             SizedBox(
-                width: 250,
-                height: 35,
-                child: ElevatedButton(
-                    onPressed: () {
-                      Get.to(HomePageCart());
-                    },
-                    child: Text(
-                      'Catálogo',
-                      style: Theme.of(context).textTheme.labelLarge,
-                    ))),
-            SizedBox(
-              height: 40,
+              width: 250,
+              height: 35,
+              child: ElevatedButton(
+                onPressed: () {
+                  Get.to(CotizacionPage());
+                },
+                child: Text(
+                  'Cotización',
+                  style: Theme.of(context).textTheme.labelLarge,
+                ),
+              ),
             ),
+            SizedBox(height: 40),
             SizedBox(
-                width: 250,
-                height: 35,
-                child: ElevatedButton(
-                    onPressed: () {
-                      Get.to(CotizacionPage());
-                    },
-                    child: Text(
-                      'Cotización',
-                      style: Theme.of(context).textTheme.labelLarge,
-                    ))),
-            SizedBox(
-              height: 40,
+              width: 250,
+              height: 35,
+              child: ElevatedButton(
+                onPressed: () {
+                  Get.to(HistorialPage());
+                },
+                child: Text(
+                  'Historial',
+                  style: Theme.of(context).textTheme.labelLarge,
+                ),
+              ),
             ),
+            SizedBox(height: 40),
             SizedBox(
-                width: 250,
-                height: 35,
-                child: ElevatedButton(
-                    onPressed: () {
-                      Get.to(HistorialPage());
-                    },
-                    child: Text(
-                      'Historial',
-                      style: Theme.of(context).textTheme.labelLarge,
-                    ))),
-            SizedBox(
-              height: 40,
+              width: 250,
+              height: 70,
+              child: ElevatedButton(
+                onPressed: () {
+                  Get.to(Contacto());
+                },
+                child: Text(
+                  'Formulario \n contacto',
+                  textAlign: TextAlign.center,
+                  style: Theme.of(context).textTheme.labelLarge,
+                ),
+              ),
             ),
-            SizedBox(
-                width: 250,
-                height: 70,
-                child: ElevatedButton(
-                    onPressed: () {
-                      Get.to(Contacto());
-                    },
-                    child: Text(
-                      'Formulario \n contacto',
-                      textAlign: TextAlign.center,
-                      style: Theme.of(context).textTheme.labelLarge,
-                    ))),
             Spacer(),
             SizedBox(
-                /*width: 35,
-                height: 35,*/
-                child: ElevatedButton(
-              onPressed: () {
-                Get.to(HomePage());
-              },
-              child: Icon(Icons.logout),
-            )),
-            SizedBox(
-              height: 35,
+              child: ElevatedButton(
+                onPressed: () {
+                  Get.to(HomePage());
+                },
+                child: Icon(Icons.logout),
+              ),
             ),
+            SizedBox(height: 35),
           ],
         ),
       ),
@@ -106,47 +103,33 @@ class _CotizacionPageState extends State<CotizacionPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: 16.0),
+            IconButton(
+              onPressed: () {
+                _globalKey.currentState?.openDrawer();
+              },
+              icon: Icon(Icons.menu),
+              color: Color3,
+            ),
+            Text(
+              'Cotización',
+              style: Theme.of(context).textTheme.headlineLarge,
+            ),
+            Text(
+              'Resumen de Cotización',
+              textScaleFactor: 1,
+              textAlign: TextAlign.center,
+              style: TextStyle(color: Colors.white),
+            ),
             Expanded(
-              child: Stack(
-                children: [
-                  IconButton(
-                    onPressed: () {
-                      _globalKey.currentState?.openDrawer();
-                    },
-                    icon: Icon(Icons.menu),
-                    color: Color3,
-                  ),
-                  Center(
-                    child: Column(
-                      children: [
-                        Text(
-                          'Cotización',
-                          style: Theme.of(context).textTheme.headlineLarge,
-                        ),
-                        Text(
-                          'Resumen de Cotización',
-                          textScaleFactor: 1,
-                          textAlign: TextAlign.center,
-                          style: TextStyle(color: Colors.white),
-                        ),
-                        Column(
-                          children: [
-                            for (int i = 0;
-                                i < coController.carrito.length;
-                                i++) ...[
-                              coController.buildCotizacionItem(
-                                dbController.productos[i].prodData!.imagen,
-                                dbController.productos[i].prodData,
-                                dbController.productos[i].prodData!.nombre,
-                              ),
-                            ],
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
+              child: ListView.builder(
+                itemCount: coController.carrito.length,
+                itemBuilder: (context, index) {
+                  return coController.buildCotizacionItem(
+                    dbController.productos[index].prodData!.imagen,
+                    dbController.productos[index].prodData,
+                    dbController.productos[index].prodData!.nombre,
+                  );
+                },
               ),
             ),
             SizedBox(height: 16.0),
@@ -160,12 +143,10 @@ class _CotizacionPageState extends State<CotizacionPage> {
               style: TextStyle(
                 color: Colors.white,
               ),
-
               // Establece cualquier otra configuración que desees para el TextField
             ),
             SizedBox(height: 16.0),
-            Center(
-                child: Row(
+            Row(
               children: [
                 ElevatedButton(
                   onPressed: () {
@@ -178,21 +159,28 @@ class _CotizacionPageState extends State<CotizacionPage> {
                   onPressed: () {
                     if (coController.carrito.isNotEmpty) {
                       coController.total();
-                      Get.snackbar('Correcto', 'Cotizacion guardada',
-                          icon: Icon(Icons.done),
-                          backgroundColor: Colors.green,
-                          duration: Duration(seconds: 1));
+                      coController.coti("", "", Carrito);
+                      Get.snackbar(
+                        'Correcto',
+                        'Cotizacion guardada',
+                        icon: Icon(Icons.done),
+                        backgroundColor: Colors.green,
+                        duration: Duration(seconds: 1),
+                      );
                     } else {
-                      Get.snackbar('Error', 'Carrito vacio',
-                          icon: Icon(Icons.warning),
-                          backgroundColor: Colors.red,
-                          duration: Duration(seconds: 1));
+                      Get.snackbar(
+                        'Error',
+                        'Carrito vacio',
+                        icon: Icon(Icons.warning),
+                        backgroundColor: Colors.red,
+                        duration: Duration(seconds: 1),
+                      );
                     }
                   },
                   child: Text('Finalizar'),
                 ),
               ],
-            )),
+            ),
           ],
         ),
       ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../constants.dart';
+import 'Cart_Catalogue/catalogo_productos.dart';
 import 'cotizacion.dart';
 import 'home.dart';
 import 'contacto.dart';
@@ -42,7 +43,9 @@ class _HistorialPageState extends State<HistorialPage> {
                 width: 250,
                 height: 35,
                 child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Get.to(HomePageCart());
+                    },
                     child: Text(
                       'Catálogo',
                       style: Theme.of(context).textTheme.labelLarge,
