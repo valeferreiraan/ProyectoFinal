@@ -167,8 +167,7 @@ class _HistorialPageState extends State<HistorialPage> {
                                       child: DataTable(
                                         sortAscending: true,
                                         sortColumnIndex: 1,
-                                        dataRowMinHeight: 200,
-                                        dataRowMaxHeight: 200,
+                                        dataRowHeight: 200,
                                         showBottomBorder: false,
                                         columns: const [
                                           DataColumn(
@@ -237,10 +236,7 @@ class _HistorialPageState extends State<HistorialPage> {
                                                           child: DataTable(
                                                             sortAscending: true,
                                                             sortColumnIndex: 1,
-                                                            dataRowMinHeight:
-                                                                70,
-                                                            dataRowMaxHeight:
-                                                                70,
+                                                            dataRowHeight: 70,
                                                             showBottomBorder:
                                                                 false,
                                                             columns: const [
