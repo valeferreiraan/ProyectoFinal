@@ -1,9 +1,7 @@
-import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:greenplastic_app/constants.dart';
 import 'package:greenplastic_app/ui/controllers/login_controller.dart';
-import '../pages/menuPage.dart';
 
 class HomePage extends StatelessWidget {
   final _textController = TextEditingController();
@@ -39,8 +37,8 @@ class HomePage extends StatelessWidget {
                 filled: true,
                 fillColor: Color3,
                 hintText: "USUARIO",
-                prefixIcon: Padding(
-                  padding: const EdgeInsets.all(2.0),
+                prefixIcon: const Padding(
+                  padding: EdgeInsets.all(2.0),
                   child: Icon(Icons.person),
                 ),
               ),
@@ -62,8 +60,8 @@ class HomePage extends StatelessWidget {
                 filled: true,
                 fillColor: Color3,
                 hintText: "CONTRASEÑA",
-                prefixIcon: Padding(
-                  padding: const EdgeInsets.all(2.0),
+                prefixIcon: const Padding(
+                  padding: EdgeInsets.all(2.0),
                   child: Icon(Icons.lock),
                 ),
               ),
@@ -77,7 +75,8 @@ class HomePage extends StatelessWidget {
               height: 35,
               child: ElevatedButton(
                   onPressed: () {
-                    _loginCon.login(_loginCon.currentuser.value, _loginCon.pswd.value);
+                    _loginCon.login(
+                        _loginCon.currentuser.value, _loginCon.pswd.value);
                   },
                   child: Text(
                     'CONTINUAR',
