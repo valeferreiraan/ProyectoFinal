@@ -293,6 +293,8 @@ class _ShowItemState extends State<ShowItem> {
                   ElevatedButton(
                     onPressed: () {
                       // Acción al presionar el botón "Seguir viendo"
+                      Get.to(HomePageCart());
+                      cartController.resetCantidad();
                     },
                     child: Text('Seguir viendo'),
                   ),
@@ -309,6 +311,7 @@ class _ShowItemState extends State<ShowItem> {
                       } else {
                         coController.car(
                             widget.index, cartController.counter.value);
+                        cartController.resetCantidad();
                         Get.snackbar(
                             '¡Listo!', 'Producto añadido correctamente',
                             icon: const Icon(Icons.done),

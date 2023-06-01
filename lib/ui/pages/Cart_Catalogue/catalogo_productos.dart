@@ -155,8 +155,18 @@ class _HomePageCartState extends State<HomePageCart> {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       mainAxisSize: MainAxisSize.max,
                       children: [
+                        Container(
+                            width: 100,
+                            height: 100,
+                            decoration: BoxDecoration(
+                                image: DecorationImage(
+                              image: AssetImage(
+                                  '${dbController.productos[index].prodData!.imagen}'), // Ruta de la imagen
+                              fit: BoxFit.cover,
+                            ))),
                         SizedBox(
                           width: 130,
+                          height: 100,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -167,7 +177,7 @@ class _HomePageCartState extends State<HomePageCart> {
                                 overflow: TextOverflow.ellipsis,
                                 maxLines: 1,
                                 text: TextSpan(
-                                  text: 'Nombre: ',
+                                  text: '',
                                   style: Theme.of(context).textTheme.bodySmall,
                                   children: [
                                     TextSpan(
@@ -181,7 +191,7 @@ class _HomePageCartState extends State<HomePageCart> {
                                 ),
                               ),
                               RichText(
-                                maxLines: 1,
+                                maxLines: 2,
                                 text: TextSpan(
                                   text: 'Tamaño: ',
                                   style: Theme.of(context).textTheme.bodySmall,

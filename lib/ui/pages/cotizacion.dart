@@ -179,7 +179,7 @@ class _CotizacionPageState extends State<CotizacionPage> {
                     if (coController.carrito.isNotEmpty) {
                       coController.total();
                       Get.snackbar('Correcto', 'Cotizacion guardada',
-                          icon: Icon(Icons.warning),
+                          icon: Icon(Icons.done),
                           backgroundColor: Colors.green,
                           duration: Duration(seconds: 1));
                     } else {

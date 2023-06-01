@@ -44,7 +44,7 @@ class MainApp extends StatelessWidget {
             color: Colors.white,
           ),
           bodySmall: GoogleFonts.quicksand(
-            fontSize: 12.0,
+            fontSize: 16.0,
             fontWeight: FontWeight.normal,
           ),
           headlineLarge: GoogleFonts.righteous(

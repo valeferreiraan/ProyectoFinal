@@ -64,7 +64,7 @@ class CotizacionController extends GetxController {
                 width: 2.0,
               ),
               image: DecorationImage(
-                image: NetworkImage(image!),
+                image: AssetImage(image!),
                 fit: BoxFit.cover,
               ),
             ),
