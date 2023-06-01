@@ -167,7 +167,8 @@ class _HistorialPageState extends State<HistorialPage> {
                                       child: DataTable(
                                         sortAscending: true,
                                         sortColumnIndex: 1,
-                                        dataRowHeight: 200,
+                                        dataRowMinHeight: 200,
+                                        dataRowMaxHeight: 200,
                                         showBottomBorder: false,
                                         columns: const [
                                           DataColumn(
@@ -202,7 +203,8 @@ class _HistorialPageState extends State<HistorialPage> {
                                                     ),
                                                     child: ExpansionTile(
                                                       tilePadding:
-                                                          EdgeInsets.all(0),
+                                                          const EdgeInsets.all(
+                                                              0),
                                                       title: Container(
                                                         padding:
                                                             const EdgeInsets
@@ -211,9 +213,11 @@ class _HistorialPageState extends State<HistorialPage> {
                                                                 horizontal: 15),
                                                         child: Row(
                                                           children: [
-                                                            Icon(Icons.history,
+                                                            const Icon(
+                                                                Icons.history,
                                                                 color: Color1),
-                                                            SizedBox(width: 10),
+                                                            const SizedBox(
+                                                                width: 10),
                                                             Expanded(
                                                               child: Text(
                                                                 '${dbController.cotizaciones[i].cotiData!.cliente}',
@@ -233,7 +237,10 @@ class _HistorialPageState extends State<HistorialPage> {
                                                           child: DataTable(
                                                             sortAscending: true,
                                                             sortColumnIndex: 1,
-                                                            dataRowHeight: 70,
+                                                            dataRowMinHeight:
+                                                                70,
+                                                            dataRowMaxHeight:
+                                                                70,
                                                             showBottomBorder:
                                                                 false,
                                                             columns: const [
