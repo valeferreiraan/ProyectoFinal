@@ -76,7 +76,6 @@ class Producto {
 class ProdData {
   String? nombre;
   double? precio;
-  int? size;
   String? imagen;
   double? altura;
   int? tendSup;
@@ -94,7 +93,6 @@ class ProdData {
   ProdData(
       this.nombre,
       this.precio,
-      this.size,
       this.imagen,
       this.altura,
       this.tendSup,
@@ -112,7 +110,6 @@ class ProdData {
   ProdData.fromJson(Map<dynamic, dynamic> json) {
     nombre = json["nombre"];
     precio = json["precio"];
-    size = json["size"];
     imagen = json["imagen"];
     altura = json["altura"];
     tendSup = json["tendSup"];

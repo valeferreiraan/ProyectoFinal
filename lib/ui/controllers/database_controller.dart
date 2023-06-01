@@ -33,6 +33,7 @@ class DatabaseController extends GetxController {
       Producto producto = Producto(key: data.snapshot.key, prodData: prodData);
       productos.add(producto);
     });
+    print(productos);
   }
 
   //Actualizar el producto con el key especificado en la base de datos
