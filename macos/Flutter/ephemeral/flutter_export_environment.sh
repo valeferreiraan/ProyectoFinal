@@ -1,7 +1,7 @@
 #!/bin/sh
 # This is a generated file; do not edit or check into version control.
-export "FLUTTER_ROOT=C:\scr\flutter"
-export "FLUTTER_APPLICATION_PATH=C:\Users\valef\OneDrive\Documents\MACC\2023-1\DESARROLLO MOVIL\PROYECTO\GreenPlasticApp"
+export "FLUTTER_ROOT=C:\Users\kiniv\AppData\Local\flutter"
+export "FLUTTER_APPLICATION_PATH=C:\Users\kiniv\OneDrive\Escritorio\Universidad\ProyectoFinal"
 export "COCOAPODS_PARALLEL_CODE_SIGN=true"
 export "FLUTTER_BUILD_DIR=build"
 export "FLUTTER_BUILD_NAME=0.1.0"

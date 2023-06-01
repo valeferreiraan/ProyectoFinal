@@ -1,10 +1,7 @@
-import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:greenplastic_app/constants.dart';
 import 'package:greenplastic_app/ui/pages/home.dart';
-import 'package:greenplastic_app/ui/controllers/login_controller.dart';
-import 'package:greenplastic_app/ui/pages/prueba_database.dart';
 import 'package:greenplastic_app/ui/pages/contacto.dart';
 import '../controllers/database_controller.dart';
 //import 'package:greenplastic_app/ui/pages/pruebasubirdatos.dart';
@@ -28,13 +25,13 @@ class _menuPageState extends State<MenuPage> {
 
     if (dbController.productos.isEmpty) {
       dbController.getProds();
-    } 
+    }
     if (dbController.clientes.isEmpty) {
       dbController.getClients();
-    } 
+    }
     if (dbController.cotizaciones.isEmpty) {
       dbController.getCotis();
-    } 
+    }
   }
 
   @override

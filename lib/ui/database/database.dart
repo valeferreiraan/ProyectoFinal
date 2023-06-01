@@ -43,8 +43,6 @@ delClient(id): eliminar un cliente
 
 */
 
-import 'dart:html';
-
 class Cotizacion {
   String? key;
   CotiData? cotiData;

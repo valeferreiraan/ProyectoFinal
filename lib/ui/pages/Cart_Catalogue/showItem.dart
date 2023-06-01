@@ -1,14 +1,6 @@
 import 'package:flutter/material.dart';
-import 'dart:js';
-import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:get/get.dart';
 import 'package:greenplastic_app/constants.dart';
-import 'package:greenplastic_app/ui/controllers/Cart_controller.dart';
-import 'package:badges/badges.dart' as b;
-import 'package:greenplastic_app/ui/pages/Cart_Catalogue/showItem.dart';
-import 'package:provider/provider.dart';
-import 'package:greenplastic_app/ui/controllers/DataBase_temporal.dart';
-import 'package:greenplastic_app/ui/pages/prueba_database.dart';
 import 'package:greenplastic_app/ui/pages/home.dart';
 
 import '../cotizacion.dart';

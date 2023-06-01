@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:get/get.dart';
 import '../../constants.dart';
 import 'cotizacion.dart';
 import 'home.dart';
 import 'contacto.dart';
 import '../controllers/database_controller.dart';
-import '../database/database.dart';
 
 class HistorialPage extends StatefulWidget {
   const HistorialPage({Key? key}) : super(key: key);
@@ -126,188 +124,233 @@ class _HistorialPageState extends State<HistorialPage> {
                     color: Color3,
                   ),
                   Center(
-                    child: Column(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(16.0),
-                          child: Text(
-                            'Historial',
-                            style: Theme.of(context).textTheme.headlineLarge,
+                    child: SingleChildScrollView(
+                      child: Column(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(16.0),
+                            child: Text(
+                              'Historial',
+                              style: Theme.of(context).textTheme.headlineLarge,
+                            ),
                           ),
-                        ),
-                        Column(
-                          children: [
-                            Card(
-                              color: Color3,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              child: ExpansionTile(
-                                tilePadding: EdgeInsets.all(0),
-                                title: Container(
-                                  padding: const EdgeInsets.symmetric(
-                                      vertical: 10, horizontal: 15),
-                                  child: Row(
-                                    children: [
-                                      Icon(Icons.history, color: Color1),
-                                      SizedBox(width: 10),
-                                      Expanded(
-                                        child: Text(
-                                          'Historial',
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .bodyMedium,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
+                          Column(
+                            children: [
+                              Card(
+                                color: Color3,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10),
                                 ),
-                                children: [
-                                  DataTable(
-                                    sortAscending: true,
-                                    sortColumnIndex: 1,
-                                    dataRowHeight: 200,
-                                    showBottomBorder: false,
-                                    columns: [
-                                      DataColumn(
-                                          label: Text(
-                                            'ID',
+                                child: ExpansionTile(
+                                  tilePadding: EdgeInsets.all(0),
+                                  title: Container(
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 10, horizontal: 15),
+                                    child: Row(
+                                      children: [
+                                        Icon(Icons.history, color: Color1),
+                                        SizedBox(width: 10),
+                                        Expanded(
+                                          child: Text(
+                                            'Historial',
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyMedium,
                                           ),
-                                          numeric: true),
-                                      DataColumn(label: Text('Cliente')),
-                                      DataColumn(
-                                          label: Text('Total'), numeric: true),
-                                    ],
-                                    rows: [
-                                      for (int i = 0;
-                                          i < dbController.cotizaciones.length;
-                                          i++)
-                                        DataRow(
-                                          cells: [
-                                            DataCell(Text('$i')),
-                                            DataCell(
-                                              Card(
-                                                color: Color3,
-                                                shape: RoundedRectangleBorder(
-                                                  borderRadius: BorderRadius.circular(10),
-                                                ),
-                                                child: ExpansionTile(
-                                                  tilePadding: EdgeInsets.all(0),
-                                                  title: Container(
-                                                    padding: const EdgeInsets.symmetric(
-                                                        vertical: 10, horizontal: 15),
-                                                    child: Row(
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  children: [
+                                    SingleChildScrollView(
+                                      scrollDirection: Axis.horizontal,
+                                      child: DataTable(
+                                        sortAscending: true,
+                                        sortColumnIndex: 1,
+                                        dataRowHeight: 200,
+                                        showBottomBorder: false,
+                                        columns: [
+                                          DataColumn(
+                                            label: Text(
+                                              'ID',
+                                            ),
+                                            numeric: true,
+                                          ),
+                                          DataColumn(label: Text('Cliente')),
+                                          DataColumn(
+                                            label: Text('Total'),
+                                            numeric: true,
+                                          ),
+                                        ],
+                                        rows: [
+                                          for (int i = 0;
+                                              i <
+                                                  dbController
+                                                      .cotizaciones.length;
+                                              i++)
+                                            DataRow(
+                                              cells: [
+                                                DataCell(Text('$i')),
+                                                DataCell(
+                                                  Card(
+                                                    color: Color3,
+                                                    shape:
+                                                        RoundedRectangleBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10),
+                                                    ),
+                                                    child: ExpansionTile(
+                                                      tilePadding:
+                                                          EdgeInsets.all(0),
+                                                      title: Container(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                    .symmetric(
+                                                                vertical: 10,
+                                                                horizontal: 15),
+                                                        child: Row(
+                                                          children: [
+                                                            Icon(Icons.history,
+                                                                color: Color1),
+                                                            SizedBox(width: 10),
+                                                            Expanded(
+                                                              child: Text(
+                                                                '${dbController.cotizaciones[i].cotiData!.cliente}',
+                                                                style: Theme.of(
+                                                                        context)
+                                                                    .textTheme
+                                                                    .bodyMedium,
+                                                              ),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ),
                                                       children: [
-                                                        Icon(Icons.history, color: Color1),
-                                                        SizedBox(width: 10),
-                                                        Expanded(
-                                                          child: Text(
-                                                            '${dbController.cotizaciones[i].cotiData!.cliente}',
-                                                            style: Theme.of(context)
-                                                                .textTheme
-                                                                .bodyMedium,
+                                                        SingleChildScrollView(
+                                                          scrollDirection:
+                                                              Axis.horizontal,
+                                                          child: DataTable(
+                                                            sortAscending: true,
+                                                            sortColumnIndex: 1,
+                                                            dataRowHeight: 70,
+                                                            showBottomBorder:
+                                                                false,
+                                                            columns: [
+                                                              DataColumn(
+                                                                label: Text(
+                                                                  'ID',
+                                                                ),
+                                                                numeric: true,
+                                                              ),
+                                                              DataColumn(
+                                                                  label: Text(
+                                                                      'Producto')),
+                                                              DataColumn(
+                                                                label: Text(
+                                                                    'Cantidad'),
+                                                                numeric: true,
+                                                              ),
+                                                              DataColumn(
+                                                                label: Text(
+                                                                    'Precio unitario'),
+                                                                numeric: true,
+                                                              ),
+                                                            ],
+                                                            rows: [
+                                                              for (int j = 0;
+                                                                  j <
+                                                                      dbController
+                                                                          .cotizaciones[
+                                                                              i]
+                                                                          .cotiData!
+                                                                          .productos
+                                                                          .length;
+                                                                  j++)
+                                                                DataRow(
+                                                                  cells: [
+                                                                    DataCell(
+                                                                      Text('$j',
+                                                                          textAlign:
+                                                                              TextAlign.right),
+                                                                    ),
+                                                                    DataCell(
+                                                                      Text(
+                                                                          '${dbController.cotizaciones[i].cotiData!.productos} ',
+                                                                          textAlign:
+                                                                              TextAlign.right),
+                                                                    ),
+                                                                    DataCell(
+                                                                      Text(
+                                                                          '${dbController.cotizaciones[i].cotiData!.productos[j]} ',
+                                                                          textAlign:
+                                                                              TextAlign.right),
+                                                                    ),
+                                                                    DataCell(
+                                                                      Text(
+                                                                          '${dbController.cotizaciones[i].cotiData!.productos[j]} ',
+                                                                          textAlign:
+                                                                              TextAlign.right),
+                                                                    ),
+                                                                  ],
+                                                                ),
+                                                            ],
                                                           ),
                                                         ),
                                                       ],
                                                     ),
                                                   ),
-                                                children:[
-                                                  DataTable(
-                                                    sortAscending: true,
-                                                    sortColumnIndex: 1,
-                                                    dataRowHeight: 70,
-                                                    showBottomBorder: false,
-                                                    columns: [
-                                                      DataColumn(
-                                                          label: Text(
-                                                            'ID',
-                                                          ),
-                                                          numeric: true),
-                                                      DataColumn(label: Text('Producto')),
-                                                      DataColumn(
-                                                          label: Text('Cantidad'), numeric: true),
-                                                      DataColumn(
-                                                          label: Text('Precio unitario'), numeric: true),
-                                                    ],
-                                                    rows: [
-                                                      for (int j = 0;
-                                                          j < dbController.cotizaciones[i].cotiData!.productos.length;
-                                                          j++)
-                                                          DataRow(
-                                                            cells: [
-                                                              DataCell(
-                                                                Text('$j',
-                                                                    textAlign: TextAlign.right),
-                                                              ),
-                                                              DataCell(
-                                                                Text(
-                                                                    '${dbController.cotizaciones[i].cotiData!.productos} ',
-                                                                    textAlign: TextAlign.right),
-                                                              ),
-                                                              DataCell(
-                                                                Text(
-                                                                    '${dbController.cotizaciones[i].cotiData!.productos[j]} ',
-                                                                    textAlign: TextAlign.right),
-                                                              ),
-                                                              DataCell(
-                                                                Text(
-                                                                    '${dbController.cotizaciones[i].cotiData!.productos[j]} ',
-                                                                    textAlign: TextAlign.right),
-                                                              ),
-                                                            ],
-                                                          ),
-                                                    ],
-                                                  ),]
                                                 ),
-                                              ),
+                                                DataCell(
+                                                  Text(
+                                                      '${dbController.cotizaciones[i].cotiData!.precioTotal} ',
+                                                      textAlign:
+                                                          TextAlign.right),
+                                                ),
+                                              ],
                                             ),
-                                            DataCell(
-                                              Text(
-                                                '${dbController.cotizaciones[i].cotiData!.precioTotal} ',
-                                                textAlign: TextAlign.right),
-                                            ),
-                                          ],
-                                        ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ),
-                            Card(
-                              color: Color3,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              child: ExpansionTile(
-                                tilePadding: EdgeInsets.all(0),
-                                title: Container(
-                                  padding: const EdgeInsets.symmetric(
-                                      vertical: 10, horizontal: 15),
-                                  child: Row(
-                                    children: [
-                                      Icon(Icons.contact_page, color: Color1),
-                                      SizedBox(width: 10),
-                                      Expanded(
-                                        child: Text('Contactos',
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .bodyMedium),
+                                        ],
                                       ),
-                                    ],
-                                  ),
+                                    ),
+                                  ],
                                 ),
-                                children: [
-                                  for (int i = 0;
-                                      i < dbController.clientes.length;
-                                      i++)
-                                    Text(
-                                        '${dbController.clientes[i].clientData!.nombre} ${dbController.clientes[i].clientData!.apellido}')
-                                ],
                               ),
-                            ),
-                          ],
-                        ),
-                      ],
+                              Card(
+                                color: Color3,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                child: ExpansionTile(
+                                  tilePadding: EdgeInsets.all(0),
+                                  title: Container(
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 10, horizontal: 15),
+                                    child: Row(
+                                      children: [
+                                        Icon(Icons.contact_page, color: Color1),
+                                        SizedBox(width: 10),
+                                        Expanded(
+                                          child: Text('Contactos',
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .bodyMedium),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  children: [
+                                    for (int i = 0;
+                                        i < dbController.clientes.length;
+                                        i++)
+                                      Text(
+                                          '${dbController.clientes[i].clientData!.nombre} ${dbController.clientes[i].clientData!.apellido}')
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ],

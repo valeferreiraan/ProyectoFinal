@@ -1,12 +1,9 @@
 import 'dart:async';
-import 'dart:html';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:firebase_database/firebase_database.dart';
 import '../database/database.dart';
 import 'database_controller.dart';
-import '';
+import 'package:universal_html/html.dart' show Event;
 
 class CotizacionController extends GetxController {
   var carrito = <Map<dynamic, dynamic>>[].obs;

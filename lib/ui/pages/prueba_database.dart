@@ -1,9 +1,7 @@
-import 'package:firebase_database/firebase_database.dart';
 import '../database/database.dart';
 import '../controllers/database_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 
 class PruebaDatabase extends StatefulWidget {
   const PruebaDatabase({Key? key}) : super(key: key);
@@ -95,7 +93,10 @@ class _PruebaDatabaseState extends State<PruebaDatabase> {
                       onPressed: () {
                         var vendedor = _edtvendedorController.text.toString();
                         var cliente = _edtclienteController.text.toString();
-                        var producto = {databaseController.productos[0].key.toString(): 1, databaseController.productos[1].key.toString() : 2};
+                        var producto = {
+                          databaseController.productos[0].key.toString(): 1,
+                          databaseController.productos[1].key.toString(): 2
+                        };
                         print(producto);
 
                         var precio =
