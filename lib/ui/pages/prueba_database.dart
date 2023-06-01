@@ -4,7 +4,6 @@ import '../controllers/database_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-
 class PruebaDatabase extends StatefulWidget {
   const PruebaDatabase({Key? key}) : super(key: key);
 
@@ -93,7 +92,7 @@ class _PruebaDatabaseState extends State<PruebaDatabase> {
                   ),
                   ElevatedButton(
                       onPressed: () {
-                        var vendedor = _edtvendedorController.text.toString();
+                        /*  var vendedor = _edtvendedorController.text.toString();
                         var cliente = _edtclienteController.text.toString();
                         var producto = {databaseController.productos[0].key.toString(): 1, databaseController.productos[1].key.toString() : 2};
                         print(producto);
@@ -103,14 +102,31 @@ class _PruebaDatabaseState extends State<PruebaDatabase> {
 
                         var data = CotiData(vendedor, cliente,
                             producto as Map<String, dynamic>, precio);
-
+                        */
+                        Map<String, dynamic> data = {
+                          "nombre": "EPTP - 100- 4E",
+                          "dimension": "100cm*120cm*15cm",
+                          "precio": 10000,
+                          "imagen": "EPTP1004E.jpg",
+                          "altura": 15,
+                          "tendSup": 7,
+                          "tendInf": 0,
+                          "durmientes": 4,
+                          "peso": 31,
+                          "resDinamica": 1100,
+                          "resEstatica": 5000,
+                          "resVacio": 1100,
+                          "dilatacion": 6,
+                          "entradas": 4,
+                          "garantia": 3,
+                        };
                         if (updateProduct) {
                           setState(() {
                             databaseController.updCoti(key, data);
                           });
                           Navigator.of(context).pop();
                         } else {
-                          databaseController.newCoti(data);
+                          databaseController.newProd(data);
                           Navigator.of(context).pop();
                         }
                       },
